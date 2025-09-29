@@ -1,0 +1,97 @@
+komekomekome@DESKTOP-5900X:/var/lib/redmine$ sudo passenger-install-apache2-module --auto --languages ruby
+Welcome to the Phusion Passenger Apache 2 module installer, v6.1.0.
+
+This installer will guide you through the entire installation process. It
+shouldn't take more than 3 minutes in total.
+
+Here's what you can expect from the installation process:
+
+ 1. The Apache 2 module will be installed for you.
+ 2. You'll learn how to configure Apache.
+ 3. You'll learn how to deploy a Ruby on Rails application.
+
+Don't worry if anything goes wrong. This installer will advise you on how to
+solve any problems.
+
+Press Enter to continue, or Ctrl-C to abort.
+
+--------------------------------------------
+
+Which languages are you interested in?
+
+Override selection with --languages.
+
+ ‣ ⬢  Ruby
+   ⬡  Python
+   ⬡  Node.js
+   ⬡  Meteor
+
+--------------------------------------------
+
+Checking for required software...
+
+ * Checking for C compiler...
+      Found: yes
+      Location: /usr/bin/cc
+ * Checking for C++ compiler...
+      Found: yes
+      Location: /usr/bin/c++
+ * Checking for Curl development headers with SSL support...
+      Found: yes
+      curl-config location: /usr/bin/curl-config
+      Header location: /usr/include/x86_64-linux-gnu/curl/curl.h
+      Version: libcurl 8.5.0
+      Usable: yes
+      Supports SSL: yes
+ * Checking for Zlib development headers...
+      Found: yes
+      Location: /usr/include/zlib.h
+ * Checking for Apache 2...
+      Found: no
+ * Checking for Rake (associated with /usr/local/bin/ruby)...
+      Found: yes
+      Location: /usr/local/bin/ruby /usr/local/bin/rake
+ * Checking for OpenSSL support for Ruby...
+      Found: yes
+ * Checking for RubyGems...
+      Found: yes
+ * Checking for Ruby development headers...
+      Found: yes
+      Location: /usr/local/include/ruby-3.4.0/ruby.h
+ * Checking for rack...
+      Found: yes
+ * Checking for OpenSSL development headers...
+      Found: yes
+      Location: /usr/include/openssl/ssl.h
+ * Checking for Apache 2 development headers...
+      Found: no
+ * Checking for Apache Portable Runtime (APR) development headers...
+      Found: no
+ * Checking for Apache Portable Runtime Utility (APU) development headers...
+      Found: no
+
+Some required software is not installed.
+But don't worry, this installer will tell you how to install them.
+Press Enter to continue, or Ctrl-C to abort.
+--------------------------------------------
+
+Installation instructions for required software
+
+ * To install Apache 2:
+   Please install it with apt-get install apache2
+
+ * To install Apache 2 development headers:
+   Please install it with apt-get install apache2-dev
+
+ * To install Apache Portable Runtime (APR) development headers:
+   Please install it with apt-get install libapr1-dev
+
+ * To install Apache Portable Runtime Utility (APU) development headers:
+   Please install it with apt-get install libaprutil1-dev
+
+If the aforementioned instructions didn't solve your problem, then please take
+a look at our documentation for troubleshooting tips:
+
+  https://www.phusionpassenger.com/library/install/apache/
+  https://www.phusionpassenger.com/library/admin/apache/troubleshooting/
+komekomekome@DESKTOP-5900X:/var/lib/redmine$

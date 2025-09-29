@@ -1,0 +1,10 @@
+komekomekome@DESKTOP-5900X:/var/lib/redmine$ sudo gem install passenger -N
+Fetching passenger-6.1.0.gem
+Building native extensions. This could take a while...
+Successfully installed passenger-6.1.0
+1 gem installed
+
+A new release of RubyGems is available: 3.6.9 → 3.7.2!
+Run `gem update --system 3.7.2` to update your installation.
+
+komekomekome@DESKTOP-5900X:/var/lib/redmine$

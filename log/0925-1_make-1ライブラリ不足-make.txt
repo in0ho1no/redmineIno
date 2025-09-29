@@ -1,0 +1,978 @@
+komekomekome@DESKTOP-5900X:~/ruby-3.4.6$ make
+        BASERUBY = ./tool/missing-baseruby.bat
+        CC = gcc
+        LD = ld
+        LDSHARED = gcc -shared
+        CFLAGS = -fstack-protector-strong -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=2  -O3 -fno-fast-math -ggdb3 -Wall -Wextra -Wdeprecated-declarations -Wdiv-by-zero -Wduplicated-cond -Wimplicit-function-declaration -Wimplicit-int -Wpointer-arith -Wwrite-strings -Wold-style-definition -Wimplicit-fallthrough=0 -Wmissing-noreturn -Wno-cast-function-type -Wno-constant-logical-operand -Wno-long-long -Wno-missing-field-initializers -Wno-overlength-strings -Wno-packed-bitfield-compat -Wno-parentheses-equality -Wno-self-assign -Wno-tautological-compare -Wno-unused-parameter -Wno-unused-value -Wsuggest-attribute=format -Wsuggest-attribute=noreturn -Wunused-variable -Wmisleading-indentation -Wundef
+        XCFLAGS = -fno-strict-overflow -fvisibility=hidden -fexcess-precision=standard -DRUBY_EXPORT -fPIE -I. -I.ext/include/x86_64-linux -I.ext/include -I./include -I. -I./prism -I./enc/unicode/15.0.0   -Dmodular_gc_dir=
+        CPPFLAGS =
+        DLDFLAGS = -Wl,--compress-debug-sections=zlib -fstack-protector-strong -pie
+        SOLIBS = -lrt -lrt -ldl -lcrypt -lm -lpthread
+        LANG = C.UTF-8
+        LC_ALL =
+        LC_CTYPE =
+        MFLAGS =
+        RUSTC = no
+        YJIT_RUSTC_ARGS = --crate-name=yjit --crate-type=staticlib --edition=2021 -g -C lto=thin -C opt-level=3 -C overflow-checks=on '--out-dir=/home/komekomekome/ruby-3.4.6/yjit/target/release/' ./yjit/src/lib.rs
+gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0
+Copyright (C) 2023 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+compiling ./main.c
+compiling dmydln.c
+compiling miniinit.c
+making dummy probes.h
+compiling array.c
+compiling ast.c
+compiling bignum.c
+compiling class.c
+compiling compar.c
+compiling compile.c
+In file included from ./include/ruby/internal/assume.h:29,
+                from ./include/ruby/backward/2/assume.h:24,
+                from ./include/ruby/defines.h:72,
+                from ./include/ruby/ruby.h:25,
+                from ./include/ruby/encoding.h:19,
+                from encindex.h:14,
+                from compile.c:19:
+compile.c: In function ‘ibf_load_catch_table’:
+compile.c:13163:39: warning: taking address of packed member of ‘struct iseq_catch_table’ may result in an unaligned pointer value [-Waddress-of-packed-member]
+13163 |             RB_OBJ_WRITE(parent_iseq, &table->entries[i].iseq, catch_iseq);
+./include/ruby/internal/cast.h:31:29: note: in definition of macro ‘RBIMPL_CAST’
+    31 | # define RBIMPL_CAST(expr) (expr)
+        |                             ^~~~
+compile.c:13163:13: note: in expansion of macro ‘RB_OBJ_WRITE’
+13163 |             RB_OBJ_WRITE(parent_iseq, &table->entries[i].iseq, catch_iseq);
+        |             ^~~~~~~~~~~~
+At top level:
+cc1: note: unrecognized command-line option ‘-Wno-self-assign’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-parentheses-equality’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-constant-logical-operand’ may have been intended to silence earlier diagnostics
+compiling complex.c
+compiling cont.c
+compiling debug.c
+compiling debug_counter.c
+compiling dir.c
+compiling dln_find.c
+compiling encoding.c
+compiling enum.c
+compiling enumerator.c
+compiling error.c
+compiling eval.c
+compiling file.c
+compiling gc.c
+compiling hash.c
+compiling inits.c
+compiling imemo.c
+compiling io.c
+compiling io_buffer.c
+compiling iseq.c
+compiling load.c
+compiling marshal.c
+compiling math.c
+compiling memory_view.c
+compiling rjit.c
+compiling rjit_c.c
+compiling node.c
+compiling node_dump.c
+compiling numeric.c
+compiling object.c
+compiling pack.c
+compiling parse.c
+compiling parser_st.c
+compiling proc.c
+compiling process.c
+compiling ractor.c
+compiling random.c
+compiling range.c
+compiling rational.c
+compiling re.c
+compiling regcomp.c
+compiling regenc.c
+compiling regerror.c
+compiling regexec.c
+compiling regparse.c
+compiling regsyntax.c
+compiling ruby.c
+compiling ruby_parser.c
+compiling scheduler.c
+compiling shape.c
+compiling signal.c
+compiling sprintf.c
+compiling st.c
+compiling strftime.c
+compiling string.c
+compiling struct.c
+compiling symbol.c
+symbol.c: In function ‘rb_id_attrset’:
+symbol.c:159:9: warning: ‘nonstring’ attribute ignored on objects of type ‘const char[][8]’ [-Wattributes]
+    159 |         RBIMPL_ATTR_NONSTRING() static const char id_types[][8] = {
+        |         ^~~~~~~~~~~~~~~~~~~~~
+At top level:
+cc1: note: unrecognized command-line option ‘-Wno-self-assign’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-parentheses-equality’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-constant-logical-operand’ may have been intended to silence earlier diagnostics
+compiling thread.c
+compiling time.c
+compiling transcode.c
+compiling util.c
+compiling variable.c
+compiling version.c
+compiling vm.c
+compiling vm_backtrace.c
+compiling vm_dump.c
+compiling vm_sync.c
+compiling vm_trace.c
+compiling weakmap.c
+compiling prism/api_node.c
+compiling prism/api_pack.c
+compiling prism/diagnostic.c
+compiling prism/encoding.c
+compiling prism/extension.c
+compiling prism/node.c
+compiling prism/options.c
+compiling prism/pack.c
+compiling prism/prettyprint.c
+compiling prism/regexp.c
+compiling prism/serialize.c
+compiling prism/static_literals.c
+compiling prism/token_type.c
+compiling prism/util/pm_buffer.c
+compiling prism/util/pm_char.c
+compiling prism/util/pm_constant_pool.c
+compiling prism/util/pm_integer.c
+compiling prism/util/pm_list.c
+compiling prism/util/pm_memchr.c
+compiling prism/util/pm_newline_list.c
+compiling prism/util/pm_string.c
+compiling prism/util/pm_strncasecmp.c
+compiling prism/util/pm_strpbrk.c
+compiling prism/prism.c
+compiling prism_init.c
+assembling coroutine/amd64/Context.S
+compiling enc/ascii.c
+compiling enc/us_ascii.c
+compiling enc/unicode.c
+compiling enc/utf_8.c
+compiling enc/trans/newline.c
+compiling ./missing/setproctitle.c
+compiling addr2line.c
+linking miniruby
+/bin/sh ./tool/ifchange "--timestamp=.rbconfig.time" rbconfig.rb rbconfig.tmp
+rbconfig.rb updated
+generating encdb.h
+encdb.h updated
+generating enc.mk
+making srcs under enc
+make[1]: Entering directory '/home/komekomekome/ruby-3.4.6'
+make[1]: Nothing to be done for 'srcs'.
+make[1]: Leaving directory '/home/komekomekome/ruby-3.4.6'
+generating transdb.h
+transdb.h updated
+compiling dln.c
+compiling localeinit.c
+creating verconf.h
+verconf.h updated
+compiling loadpath.c
+builtin_binary.inc updated
+4f6ead1e1c80a8d0cd8734996441d0644c835fb08ffa261839baabf9fae1f7f2  builtin_binary.inc
+compiling builtin.c
+compiling dmyext.c
+compiling dmyenc.c
+linking static-library libruby-static.a
+generating makefiles ext/configure-ext.mk
+ext/configure-ext.mk updated
+make[1]: Entering directory '/home/komekomekome/ruby-3.4.6'
+configuring -test-/RUBY_ALIGNOF
+configuring -test-/abi
+configuring -test-/arith_seq/beg_len_step
+configuring -test-/arith_seq/extract
+configuring -test-/array/concat
+configuring -test-/array/resize
+configuring -test-/asan
+configuring -test-/bignum
+configuring -test-/bug-14834
+configuring -test-/bug-3571
+configuring -test-/bug-5832
+configuring -test-/bug_reporter
+configuring -test-/class
+configuring -test-/cxxanyargs
+configuring -test-/debug
+configuring -test-/dln/empty
+configuring -test-/econv
+configuring -test-/ensure_and_callcc
+configuring -test-/enumerator_kw
+configuring -test-/eval
+configuring -test-/exception
+configuring -test-/fatal
+configuring -test-/file
+configuring -test-/float
+configuring -test-/funcall
+configuring -test-/gvl/call_without_gvl
+configuring -test-/hash
+configuring -test-/integer
+configuring -test-/iseq_load
+configuring -test-/iter
+configuring -test-/load/dot.dot
+configuring -test-/load/protect
+configuring -test-/load/resolve_symbol_resolver
+configuring -test-/load/resolve_symbol_target
+configuring -test-/load/stringify_symbols
+configuring -test-/load/stringify_target
+configuring -test-/marshal/compat
+configuring -test-/marshal/internal_ivar
+configuring -test-/marshal/usr
+configuring -test-/memory_status
+configuring -test-/memory_view
+configuring -test-/method
+configuring -test-/notimplement
+configuring -test-/num2int
+configuring -test-/path_to_class
+configuring -test-/popen_deadlock
+configuring -test-/postponed_job
+configuring -test-/printf
+configuring -test-/proc
+configuring -test-/public_header_warnings
+configuring -test-/random
+configuring -test-/rational
+configuring -test-/rb_call_super_kw
+configuring -test-/recursion
+configuring -test-/regexp
+configuring -test-/scan_args
+configuring -test-/st/foreach
+configuring -test-/st/numhash
+configuring -test-/st/update
+configuring -test-/string
+configuring -test-/struct
+configuring -test-/symbol
+configuring -test-/thread/id
+configuring -test-/thread/instrumentation
+configuring -test-/thread/lock_native_thread
+configuring -test-/thread_fd
+configuring -test-/time
+configuring -test-/tracepoint
+configuring -test-/typeddata
+configuring -test-/vm
+configuring -test-/wait
+configuring cgi/escape
+configuring continuation
+configuring coverage
+configuring date
+configuring digest
+configuring digest/bubblebabble
+configuring digest/md5
+configuring digest/rmd160
+configuring digest/sha1
+configuring digest/sha2
+configuring erb/escape
+configuring etc
+configuring fcntl
+configuring fiddle
+configuring io/console
+configuring io/nonblock
+configuring io/wait
+configuring json
+configuring json/generator
+configuring json/parser
+configuring monitor
+configuring objspace
+configuring openssl
+configuring pathname
+configuring psych
+yaml.h not found
+configuring pty
+configuring rbconfig/sizeof
+configuring ripper
+configuring rubyvm
+configuring socket
+configuring stringio
+configuring strscan
+configuring zlib
+configuring bigdecimal-3.1.8/ext/bigdecimal
+configuring debug-1.11.0/ext/debug
+configuring nkf-0.2.0/ext/nkf
+configuring racc-1.8.1/ext/racc/cparse
+configuring rbs-3.8.0/ext/rbs_extension
+configuring syslog-0.2.0/ext/syslog
+make[1]: Leaving directory '/home/komekomekome/ruby-3.4.6'
+generating makefile exts.mk
+exts.mk updated
+make[1]: Entering directory '/home/komekomekome/ruby-3.4.6'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/RUBY_ALIGNOF'
+compiling c.c
+compiling cpp.cpp
+linking shared-object -test-/RUBY_ALIGNOF.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/RUBY_ALIGNOF'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/arith_seq/beg_len_step'
+compiling beg_len_step.c
+linking shared-object -test-/arith_seq/beg_len_step.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/arith_seq/beg_len_step'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/arith_seq/extract'
+compiling extract.c
+linking shared-object -test-/arith_seq/extract.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/arith_seq/extract'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/array/concat'
+compiling to_ary_concat.c
+linking shared-object -test-/array/to_ary_concat.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/array/concat'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/array/resize'
+compiling resize.c
+linking shared-object -test-/array/resize.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/array/resize'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/asan'
+compiling asan.c
+linking shared-object -test-/asan.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/asan'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/bignum'
+compiling big2str.c
+compiling bigzero.c
+compiling div.c
+compiling init.c
+compiling intpack.c
+compiling mul.c
+compiling str2big.c
+linking shared-object -test-/bignum.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/bignum'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/bug-14834'
+compiling bug-14834.c
+linking shared-object -test-/bug_14834.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/bug-14834'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/bug-3571'
+compiling bug.c
+linking shared-object -test-/bug_3571.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/bug-3571'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/bug-5832'
+compiling bug.c
+linking shared-object -test-/bug_5832.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/bug-5832'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/bug_reporter'
+compiling bug_reporter.c
+linking shared-object -test-/bug_reporter.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/bug_reporter'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/class'
+compiling class2name.c
+compiling init.c
+linking shared-object -test-/class.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/class'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/cxxanyargs'
+compiling cxxanyargs.cpp
+linking shared-object -test-/cxxanyargs.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/cxxanyargs'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/debug'
+compiling init.c
+compiling inspector.c
+compiling profile_frames.c
+linking shared-object -test-/debug.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/debug'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/dln/empty'
+compiling empty.c
+linking shared-object -test-/dln/empty.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/dln/empty'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/econv'
+compiling append.c
+compiling init.c
+linking shared-object -test-/econv.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/econv'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/ensure_and_callcc'
+compiling ensure_and_callcc.c
+linking shared-object -test-/ensure_and_callcc.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/ensure_and_callcc'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/enumerator_kw'
+compiling enumerator_kw.c
+linking shared-object -test-/enumerator_kw.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/enumerator_kw'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/eval'
+compiling eval.c
+linking shared-object -test-/eval.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/eval'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/exception'
+compiling dataerror.c
+compiling enc_raise.c
+compiling ensured.c
+compiling init.c
+linking shared-object -test-/exception.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/exception'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/fatal'
+compiling init.c
+compiling invalid.c
+compiling rb_fatal.c
+linking shared-object -test-/fatal.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/fatal'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/file'
+compiling fs.c
+compiling init.c
+compiling newline_conv.c
+compiling stat.c
+linking shared-object -test-/file.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/file'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/float'
+compiling init.c
+compiling nextafter.c
+linking shared-object -test-/float.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/float'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/funcall'
+compiling funcall.c
+linking shared-object -test-/funcall.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/funcall'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/gvl/call_without_gvl'
+compiling call_without_gvl.c
+linking shared-object -test-/gvl/call_without_gvl.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/gvl/call_without_gvl'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/hash'
+compiling delete.c
+compiling init.c
+linking shared-object -test-/hash.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/hash'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/integer'
+compiling core_ext.c
+compiling init.c
+compiling my_integer.c
+linking shared-object -test-/integer.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/integer'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/iseq_load'
+compiling iseq_load.c
+linking shared-object -test-/iseq_load.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/iseq_load'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/iter'
+compiling break.c
+compiling init.c
+compiling yield.c
+linking shared-object -test-/iter.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/iter'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/load/dot.dot'
+compiling dot.dot.c
+linking shared-object -test-/load/dot.dot.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/load/dot.dot'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/load/protect'
+compiling protect.c
+linking shared-object -test-/load/protect.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/load/protect'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/load/resolve_symbol_resolver'
+compiling resolve_symbol_resolver.c
+linking shared-object -test-/load/resolve_symbol_resolver.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/load/resolve_symbol_resolver'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/load/resolve_symbol_target'
+compiling resolve_symbol_target.c
+linking shared-object -test-/load/resolve_symbol_target.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/load/resolve_symbol_target'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/load/stringify_symbols'
+compiling stringify_symbols.c
+linking shared-object -test-/load/stringify_symbols.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/load/stringify_symbols'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/load/stringify_target'
+compiling stringify_target.c
+linking shared-object -test-/load/stringify_target.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/load/stringify_target'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/marshal/compat'
+compiling usrcompat.c
+linking shared-object -test-/marshal/compat.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/marshal/compat'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/marshal/internal_ivar'
+compiling internal_ivar.c
+linking shared-object -test-/marshal/internal_ivar.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/marshal/internal_ivar'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/marshal/usr'
+compiling usrmarshal.c
+linking shared-object -test-/marshal/usr.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/marshal/usr'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/memory_view'
+compiling memory_view.c
+linking shared-object -test-/memory_view.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/memory_view'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/method'
+compiling arity.c
+compiling init.c
+linking shared-object -test-/method.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/method'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/notimplement'
+compiling bug.c
+linking shared-object -test-/notimplement.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/notimplement'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/num2int'
+compiling num2int.c
+linking shared-object -test-/num2int.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/num2int'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/path_to_class'
+compiling path_to_class.c
+linking shared-object -test-/path_to_class.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/path_to_class'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/popen_deadlock'
+compiling infinite_loop_dlsym.c
+linking shared-object -test-/popen_deadlock/infinite_loop_dlsym.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/popen_deadlock'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/postponed_job'
+compiling postponed_job.c
+linking shared-object -test-/postponed_job.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/postponed_job'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/printf'
+compiling printf.c
+linking shared-object -test-/printf.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/printf'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/proc'
+compiling init.c
+compiling receiver.c
+compiling super.c
+linking shared-object -test-/proc.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/proc'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/random'
+compiling bad_version.c
+compiling init.c
+compiling loop.c
+linking shared-object -test-/random.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/random'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/rational'
+compiling rat.c
+linking shared-object -test-/rational.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/rational'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/rb_call_super_kw'
+compiling rb_call_super_kw.c
+linking shared-object -test-/rb_call_super_kw.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/rb_call_super_kw'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/recursion'
+compiling recursion.c
+linking shared-object -test-/recursion.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/recursion'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/regexp'
+compiling init.c
+compiling parse_depth_limit.c
+linking shared-object -test-/regexp.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/regexp'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/scan_args'
+compiling scan_args.c
+linking shared-object -test-/scan_args.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/scan_args'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/st/foreach'
+compiling foreach.c
+linking shared-object -test-/st/foreach.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/st/foreach'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/st/numhash'
+compiling numhash.c
+linking shared-object -test-/st/numhash.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/st/numhash'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/st/update'
+compiling update.c
+linking shared-object -test-/st/update.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/st/update'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/string'
+compiling capacity.c
+compiling coderange.c
+compiling cstr.c
+compiling ellipsize.c
+compiling enc_associate.c
+compiling enc_dummy.c
+compiling enc_str_buf_cat.c
+compiling fstring.c
+compiling init.c
+compiling modify.c
+compiling new.c
+compiling nofree.c
+compiling normalize.c
+compiling qsort.c
+compiling rb_interned_str.c
+compiling rb_str_dup.c
+compiling set_len.c
+linking shared-object -test-/string.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/string'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/struct'
+compiling data.c
+compiling duplicate.c
+compiling init.c
+compiling len.c
+compiling member.c
+linking shared-object -test-/struct.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/struct'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/symbol'
+compiling init.c
+compiling type.c
+linking shared-object -test-/symbol.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/symbol'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/thread/id'
+compiling id.c
+linking shared-object -test-/thread/id.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/thread/id'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/thread/instrumentation'
+compiling instrumentation.c
+linking shared-object -test-/thread/instrumentation.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/thread/instrumentation'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/thread/lock_native_thread'
+compiling lock_native_thread.c
+linking shared-object -test-/thread/lock_native_thread.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/thread/lock_native_thread'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/thread_fd'
+compiling thread_fd.c
+linking shared-object -test-/thread_fd.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/thread_fd'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/time'
+compiling init.c
+compiling leap_second.c
+compiling new.c
+linking shared-object -test-/time.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/time'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/tracepoint'
+compiling gc_hook.c
+compiling tracepoint.c
+linking shared-object -test-/tracepoint.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/tracepoint'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/typeddata'
+compiling typeddata.c
+linking shared-object -test-/typeddata.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/typeddata'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/vm'
+compiling at_exit.c
+linking shared-object -test-/vm/at_exit.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/vm'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/-test-/wait'
+compiling wait.c
+linking shared-object -test-/wait.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/-test-/wait'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/cgi/escape'
+compiling escape.c
+linking shared-object cgi/escape.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/cgi/escape'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/continuation'
+compiling continuation.c
+linking shared-object continuation.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/continuation'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/coverage'
+compiling coverage.c
+linking shared-object coverage.so
+installing default coverage libraries
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/coverage'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/date'
+compiling date_core.c
+compiling date_parse.c
+compiling date_strftime.c
+compiling date_strptime.c
+linking shared-object date_core.so
+installing default date_core libraries
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/date'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/digest'
+compiling digest.c
+linking shared-object digest.so
+installing digest libraries
+installing default digest libraries
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/digest'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/digest/bubblebabble'
+compiling bubblebabble.c
+linking shared-object digest/bubblebabble.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/digest/bubblebabble'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/digest/md5'
+compiling md5init.c
+compiling md5.c
+linking shared-object digest/md5.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/digest/md5'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/digest/rmd160'
+compiling rmd160init.c
+compiling rmd160.c
+linking shared-object digest/rmd160.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/digest/rmd160'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/digest/sha1'
+compiling sha1init.c
+compiling sha1.c
+linking shared-object digest/sha1.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/digest/sha1'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/digest/sha2'
+compiling sha2init.c
+compiling sha2.c
+linking shared-object digest/sha2.so
+installing default sha2 libraries
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/digest/sha2'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/erb/escape'
+compiling escape.c
+linking shared-object erb/escape.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/erb/escape'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/etc'
+compiling etc.c
+linking shared-object etc.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/etc'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/fcntl'
+compiling fcntl.c
+linking shared-object fcntl.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/fcntl'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/io/console'
+compiling console.c
+linking shared-object io/console.so
+installing default console libraries
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/io/console'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/io/nonblock'
+compiling nonblock.c
+linking shared-object io/nonblock.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/io/nonblock'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/io/wait'
+compiling wait.c
+linking shared-object io/wait.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/io/wait'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/json'
+installing default libraries
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/json'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/json/generator'
+compiling generator.c
+linking shared-object json/ext/generator.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/json/generator'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/json/parser'
+compiling parser.c
+linking shared-object json/ext/parser.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/json/parser'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/monitor'
+compiling monitor.c
+linking shared-object monitor.so
+installing default monitor libraries
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/monitor'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/objspace'
+compiling object_tracing.c
+compiling objspace.c
+compiling objspace_dump.c
+linking shared-object objspace.so
+installing default objspace libraries
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/objspace'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/pathname'
+compiling pathname.c
+linking shared-object pathname.so
+installing default pathname libraries
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/pathname'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/pty'
+compiling pty.c
+linking shared-object pty.so
+installing default pty libraries
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/pty'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/rbconfig/sizeof'
+compiling sizes.c
+compiling limits.c
+linking shared-object rbconfig/sizeof.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/rbconfig/sizeof'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/ripper'
+compiling eventids1.c
+compiling eventids2.c
+compiling ripper.c
+compiling ripper_init.c
+linking shared-object ripper.so
+installing default ripper libraries
+checking ../.././parse.y and ../.././ext/ripper/eventids2.c
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/ripper'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/rubyvm'
+installing default libraries
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/rubyvm'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/socket'
+compiling init.c
+compiling constants.c
+compiling basicsocket.c
+compiling socket.c
+compiling ipsocket.c
+compiling tcpsocket.c
+compiling tcpserver.c
+compiling sockssocket.c
+compiling udpsocket.c
+compiling unixsocket.c
+compiling unixserver.c
+compiling option.c
+compiling ancdata.c
+compiling raddrinfo.c
+compiling ifaddr.c
+linking shared-object socket.so
+installing default socket libraries
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/socket'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/stringio'
+compiling stringio.c
+linking shared-object stringio.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/stringio'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/ext/strscan'
+compiling strscan.c
+linking shared-object strscan.so
+installing default strscan libraries
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/ext/strscan'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/.bundle/gems/bigdecimal-3.1.8/ext/bigdecimal'
+compiling bigdecimal.c
+compiling missing.c
+linking shared-object bigdecimal.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/.bundle/gems/bigdecimal-3.1.8/ext/bigdecimal'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/.bundle/gems/debug-1.11.0/ext/debug'
+compiling debug.c
+compiling iseq_collector.c
+linking shared-object debug/debug.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/.bundle/gems/debug-1.11.0/ext/debug'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/.bundle/gems/nkf-0.2.0/ext/nkf'
+compiling nkf.c
+linking shared-object nkf.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/.bundle/gems/nkf-0.2.0/ext/nkf'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/.bundle/gems/racc-1.8.1/ext/racc/cparse'
+compiling cparse.c
+linking shared-object racc/cparse.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/.bundle/gems/racc-1.8.1/ext/racc/cparse'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/.bundle/gems/rbs-3.8.0/ext/rbs_extension'
+compiling ../../../../.././.bundle/gems/rbs-3.8.0/ext/rbs_extension/../../src/constants.c
+compiling ../../../../.././.bundle/gems/rbs-3.8.0/ext/rbs_extension/../../src/ruby_objs.c
+compiling lexer.c
+compiling lexstate.c
+compiling location.c
+compiling main.c
+compiling parser.c
+compiling parserstate.c
+compiling unescape.c
+linking shared-object rbs_extension.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/.bundle/gems/rbs-3.8.0/ext/rbs_extension'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6/.bundle/gems/syslog-0.2.0/ext/syslog'
+compiling syslog.c
+linking shared-object syslog_ext.so
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6/.bundle/gems/syslog-0.2.0/ext/syslog'
+make[2]: Entering directory '/home/komekomekome/ruby-3.4.6'
+linking ruby
+make[2]: Leaving directory '/home/komekomekome/ruby-3.4.6'
+make[1]: Leaving directory '/home/komekomekome/ruby-3.4.6'
+make[1]: Entering directory '/home/komekomekome/ruby-3.4.6'
+*** Following extensions are not compiled:
+fiddle:
+        Could not be configured. It will not be installed.
+        /home/komekomekome/ruby-3.4.6/ext/fiddle/extconf.rb:86: missing libffi. Please install libffi or use --with-libffi-source-dir with libffi source location.
+        Check ext/fiddle/mkmf.log for more details.
+openssl:
+        Could not be configured. It will not be installed.
+        /home/komekomekome/ruby-3.4.6/ext/openssl/extconf.rb:116: OpenSSL library could not be found. You might want to use --with-openssl-dir=<dir> option to specify the prefix where OpenSSL is installed.
+        Check ext/openssl/mkmf.log for more details.
+psych:
+        Could not be configured. It will not be installed.
+        Check ext/psych/mkmf.log for more details.
+zlib:
+        Could not be configured. It will not be installed.
+        Check ext/zlib/mkmf.log for more details.
+*** Fix the problems, then remove these directories and try again if you want.
+make[1]: Leaving directory '/home/komekomekome/ruby-3.4.6'
+making enc
+make[1]: Entering directory '/home/komekomekome/ruby-3.4.6'
+compiling ./enc/encdb.c
+linking encoding encdb.so
+compiling ./enc/big5.c
+linking encoding big5.so
+compiling ./enc/cesu_8.c
+linking encoding cesu_8.so
+compiling ./enc/cp949.c
+linking encoding cp949.so
+compiling ./enc/emacs_mule.c
+linking encoding emacs_mule.so
+compiling ./enc/euc_jp.c
+linking encoding euc_jp.so
+compiling ./enc/euc_kr.c
+linking encoding euc_kr.so
+compiling ./enc/euc_tw.c
+linking encoding euc_tw.so
+compiling ./enc/gb2312.c
+linking encoding gb2312.so
+compiling ./enc/gb18030.c
+linking encoding gb18030.so
+compiling ./enc/gbk.c
+linking encoding gbk.so
+compiling ./enc/iso_8859_1.c
+linking encoding iso_8859_1.so
+compiling ./enc/iso_8859_2.c
+linking encoding iso_8859_2.so
+compiling ./enc/iso_8859_3.c
+linking encoding iso_8859_3.so
+compiling ./enc/iso_8859_4.c
+linking encoding iso_8859_4.so
+compiling ./enc/iso_8859_5.c
+linking encoding iso_8859_5.so
+compiling ./enc/iso_8859_6.c
+linking encoding iso_8859_6.so
+compiling ./enc/iso_8859_7.c
+linking encoding iso_8859_7.so
+compiling ./enc/iso_8859_8.c
+linking encoding iso_8859_8.so
+compiling ./enc/iso_8859_9.c
+linking encoding iso_8859_9.so
+compiling ./enc/iso_8859_10.c
+linking encoding iso_8859_10.so
+compiling ./enc/iso_8859_11.c
+linking encoding iso_8859_11.so
+compiling ./enc/iso_8859_13.c
+linking encoding iso_8859_13.so
+compiling ./enc/iso_8859_14.c
+linking encoding iso_8859_14.so
+compiling ./enc/iso_8859_15.c
+linking encoding iso_8859_15.so
+compiling ./enc/iso_8859_16.c
+linking encoding iso_8859_16.so
+compiling ./enc/koi8_r.c
+linking encoding koi8_r.so
+compiling ./enc/koi8_u.c
+linking encoding koi8_u.so
+compiling ./enc/shift_jis.c
+linking encoding shift_jis.so
+compiling ./enc/utf_16be.c
+linking encoding utf_16be.so
+compiling ./enc/utf_16le.c
+linking encoding utf_16le.so
+compiling ./enc/utf_32be.c
+linking encoding utf_32be.so
+compiling ./enc/utf_32le.c
+linking encoding utf_32le.so
+compiling ./enc/windows_31j.c
+linking encoding windows_31j.so
+compiling ./enc/windows_1250.c
+linking encoding windows_1250.so
+compiling ./enc/windows_1251.c
+linking encoding windows_1251.so
+compiling ./enc/windows_1252.c
+linking encoding windows_1252.so
+compiling ./enc/windows_1253.c
+linking encoding windows_1253.so
+compiling ./enc/windows_1254.c
+linking encoding windows_1254.so
+compiling ./enc/windows_1257.c
+linking encoding windows_1257.so
+make[1]: Leaving directory '/home/komekomekome/ruby-3.4.6'
+making trans
+make[1]: Entering directory '/home/komekomekome/ruby-3.4.6'
+compiling ./enc/trans/transdb.c
+linking transcoder transdb.so
+compiling ./enc/trans/big5.c
+linking transcoder big5.so
+compiling ./enc/trans/cesu_8.c
+linking transcoder cesu_8.so
+compiling ./enc/trans/chinese.c
+linking transcoder chinese.so
+compiling ./enc/trans/ebcdic.c
+linking transcoder ebcdic.so
+compiling ./enc/trans/emoji.c
+linking transcoder emoji.so
+compiling ./enc/trans/emoji_iso2022_kddi.c
+linking transcoder emoji_iso2022_kddi.so
+compiling ./enc/trans/emoji_sjis_docomo.c
+linking transcoder emoji_sjis_docomo.so
+compiling ./enc/trans/emoji_sjis_kddi.c
+linking transcoder emoji_sjis_kddi.so
+compiling ./enc/trans/emoji_sjis_softbank.c
+linking transcoder emoji_sjis_softbank.so
+compiling ./enc/trans/escape.c
+linking transcoder escape.so
+compiling ./enc/trans/gb18030.c
+linking transcoder gb18030.so
+compiling ./enc/trans/gbk.c
+linking transcoder gbk.so
+compiling ./enc/trans/iso2022.c
+./enc/trans/iso2022.c:615:1: warning: ‘nonstring’ attribute ignored on objects of type ‘const char[63][2]’ [-Wattributes]
+    615 | RBIMPL_ATTR_NONSTRING() static const char tbl0208[tbl0208_num][2] = {
+        | ^~~~~~~~~~~~~~~~~~~~~
+cc1: note: unrecognized command-line option ‘-Wno-self-assign’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-parentheses-equality’ may have been intended to silence earlier diagnostics
+cc1: note: unrecognized command-line option ‘-Wno-constant-logical-operand’ may have been intended to silence earlier diagnostics
+linking transcoder iso2022.so
+compiling ./enc/trans/japanese.c
+linking transcoder japanese.so
+compiling ./enc/trans/japanese_euc.c
+linking transcoder japanese_euc.so
+compiling ./enc/trans/japanese_sjis.c
+linking transcoder japanese_sjis.so
+compiling ./enc/trans/korean.c
+linking transcoder korean.so
+compiling ./enc/trans/single_byte.c
+linking transcoder single_byte.so
+compiling ./enc/trans/utf8_mac.c
+linking transcoder utf8_mac.so
+compiling ./enc/trans/utf_16_32.c
+linking transcoder utf_16_32.so
+make[1]: Leaving directory '/home/komekomekome/ruby-3.4.6'
+making encs
+make[1]: Entering directory '/home/komekomekome/ruby-3.4.6'
+make[1]: Nothing to be done for 'encs'.
+make[1]: Leaving directory '/home/komekomekome/ruby-3.4.6'
+komekomekome@DESKTOP-5900X:~/ruby-3.4.6$

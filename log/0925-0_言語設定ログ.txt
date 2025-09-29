@@ -1,0 +1,31 @@
+komekomekome@DESKTOP-5900X:~$ sudo apt install -y language-pack-ja
+[sudo] password for komekomekome:
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following packages were automatically installed and are no longer required:
+    libdrm-nouveau2 libdrm-radeon1 libgl1-amber-dri libglapi-mesa libllvm17t64 libxcb-dri2-0
+Use 'sudo apt autoremove' to remove them.
+The following additional packages will be installed:
+    language-pack-ja-base
+The following NEW packages will be installed:
+    language-pack-ja language-pack-ja-base
+0 upgraded, 2 newly installed, 0 to remove and 16 not upgraded.
+Need to get 1594 kB of archives.
+After this operation, 7428 kB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 language-pack-ja-base all 1:24.04+20250724 [1592 kB]
+Get:2 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 language-pack-ja all 1:24.04+20250724 [1900 B]
+Fetched 1594 kB in 2s (705 kB/s)
+Selecting previously unselected package language-pack-ja-base.
+(Reading database ... 40795 files and directories currently installed.)
+Preparing to unpack .../language-pack-ja-base_1%3a24.04+20250724_all.deb ...
+Unpacking language-pack-ja-base (1:24.04+20250724) ...
+Selecting previously unselected package language-pack-ja.
+Preparing to unpack .../language-pack-ja_1%3a24.04+20250724_all.deb ...
+Unpacking language-pack-ja (1:24.04+20250724) ...
+Setting up language-pack-ja (1:24.04+20250724) ...
+Setting up language-pack-ja-base (1:24.04+20250724) ...
+Generating locales (this might take a while)...
+    ja_JP.UTF-8... done
+Generation complete.
+komekomekome@DESKTOP-5900X:~$

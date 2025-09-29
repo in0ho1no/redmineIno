@@ -1,0 +1,1760 @@
+komekomekome@DESKTOP-5900X:/var/lib/redmine$ sudo -u www-data bin/rake db:migrate RAILS_ENV="production"
+`/var/www` is not a directory.
+Bundler will use `/tmp/bundler20250927-3184-xxus2y3184' as your home directory temporarily.
+== 1 Setup: migrating =========================================================
+-- create_table("attachments", {force: true, id: :integer})
+   -> 0.0112s
+-- create_table("auth_sources", {force: true, id: :integer})
+   -> 0.0060s
+-- create_table("custom_fields", {force: true, id: :integer})
+   -> 0.0089s
+-- create_table("custom_fields_projects", {id: false, force: true})
+   -> 0.0014s
+-- create_table("custom_fields_trackers", {id: false, force: true})
+   -> 0.0012s
+-- create_table("custom_values", {force: true, id: :integer})
+   -> 0.0062s
+-- create_table("documents", {force: true, id: :integer})
+   -> 0.0070s
+-- add_index("documents", ["project_id"], {name: "documents_project_id"})
+   -> 0.0025s
+-- create_table("enumerations", {force: true, id: :integer})
+   -> 0.0035s
+-- create_table("issue_categories", {force: true, id: :integer})
+   -> 0.0039s
+-- add_index("issue_categories", ["project_id"], {name: "issue_categories_project_id"})
+   -> 0.0026s
+-- create_table("issue_histories", {force: true, id: :integer})
+   -> 0.0062s
+-- add_index("issue_histories", ["issue_id"], {name: "issue_histories_issue_id"})
+   -> 0.0024s
+-- create_table("issue_statuses", {force: true, id: :integer})
+   -> 0.0040s
+-- create_table("issues", {force: true, id: :integer})
+   -> 0.0080s
+-- add_index("issues", ["project_id"], {name: "issues_project_id"})
+   -> 0.0023s
+-- create_table("members", {force: true, id: :integer})
+   -> 0.0036s
+-- create_table("news", {force: true, id: :integer})
+   -> 0.0085s
+-- add_index("news", ["project_id"], {name: "news_project_id"})
+   -> 0.0023s
+-- create_table("permissions", {force: true, id: :integer})
+   -> 0.0050s
+-- create_table("permissions_roles", {id: false, force: true})
+   -> 0.0011s
+-- add_index("permissions_roles", ["role_id"], {name: "permissions_roles_role_id"})
+   -> 0.0023s
+-- create_table("projects", {force: true, id: :integer})
+   -> 0.0068s
+-- create_table("roles", {force: true, id: :integer})
+   -> 0.0036s
+-- create_table("tokens", {force: true, id: :integer})
+   -> 0.0037s
+-- create_table("trackers", {force: true, id: :integer})
+   -> 0.0040s
+-- create_table("users", {force: true, id: :integer})
+   -> 0.0060s
+-- create_table("versions", {force: true, id: :integer})
+   -> 0.0066s
+-- add_index("versions", ["project_id"], {name: "versions_project_id"})
+   -> 0.0037s
+-- create_table("workflows", {force: true, id: :integer})
+   -> 0.0046s
+== 1 Setup: migrated (0.1898s) ================================================
+
+== 2 IssueMove: migrating =====================================================
+== 2 IssueMove: migrated (0.0024s) ============================================
+
+== 3 IssueAddNote: migrating ==================================================
+== 3 IssueAddNote: migrated (0.0021s) =========================================
+
+== 4 ExportPdf: migrating =====================================================
+== 4 ExportPdf: migrated (0.0102s) ============================================
+
+== 5 IssueStartDate: migrating ================================================
+-- add_column(:issues, :start_date, :date)
+   -> 0.0006s
+-- add_column(:issues, :done_ratio, :integer, {default: 0, null: false})
+   -> 0.0007s
+== 5 IssueStartDate: migrated (0.0014s) =======================================
+
+== 6 CalendarAndActivity: migrating ===========================================
+== 6 CalendarAndActivity: migrated (0.0038s) ==================================
+
+== 7 CreateJournals: migrating ================================================
+-- create_table(:journals, {force: true, id: :integer})
+   -> 0.0066s
+-- create_table(:journal_details, {force: true, id: :integer})
+   -> 0.0060s
+-- add_index("journals", ["journalized_id", "journalized_type"], {name: "journals_journalized_id"})
+   -> 0.0023s
+-- add_index("journal_details", ["journal_id"], {name: "journal_details_journal_id"})
+   -> 0.0022s
+-- drop_table(:issue_histories)
+   -> 0.0023s
+== 7 CreateJournals: migrated (0.0312s) =======================================
+
+== 8 CreateUserPreferences: migrating =========================================
+-- create_table(:user_preferences, {id: :integer})
+   -> 0.0058s
+== 8 CreateUserPreferences: migrated (0.0059s) ================================
+
+== 9 AddHideMailPref: migrating ===============================================
+-- add_column(:user_preferences, :hide_mail, :boolean, {default: false})
+   -> 0.0010s
+== 9 AddHideMailPref: migrated (0.0011s) ======================================
+
+== 10 CreateComments: migrating ===============================================
+-- create_table(:comments, {id: :integer})
+   -> 0.0068s
+== 10 CreateComments: migrated (0.0069s) ======================================
+
+== 11 AddNewsCommentsCount: migrating =========================================
+-- add_column(:news, :comments_count, :integer, {default: 0, null: false})
+   -> 0.0007s
+== 11 AddNewsCommentsCount: migrated (0.0008s) ================================
+
+== 12 AddCommentsPermissions: migrating =======================================
+== 12 AddCommentsPermissions: migrated (0.0036s) ==============================
+
+== 13 CreateQueries: migrating ================================================
+-- create_table(:queries, {force: true, id: :integer})
+   -> 0.0059s
+== 13 CreateQueries: migrated (0.0060s) =======================================
+
+== 14 AddQueriesPermissions: migrating ========================================
+== 14 AddQueriesPermissions: migrated (0.0025s) ===============================
+
+== 15 CreateRepositories: migrating ===========================================
+-- create_table(:repositories, {force: true, id: :integer})
+   -> 0.0072s
+== 15 CreateRepositories: migrated (0.0081s) ==================================
+
+== 16 AddRepositoriesPermissions: migrating ===================================
+== 16 AddRepositoriesPermissions: migrated (0.0056s) ==========================
+
+== 17 CreateSettings: migrating ===============================================
+-- create_table(:settings, {force: true, id: :integer})
+   -> 0.0059s
+== 17 CreateSettings: migrated (0.0252s) ======================================
+
+== 18 SetDocAndFilesNotifications: migrating ==================================
+== 18 SetDocAndFilesNotifications: migrated (0.0066s) =========================
+
+== 19 AddIssueStatusPosition: migrating =======================================
+-- add_column(:issue_statuses, :position, :integer, {default: 1})
+   -> 0.0014s
+== 19 AddIssueStatusPosition: migrated (0.0039s) ==============================
+
+== 20 AddRolePosition: migrating ==============================================
+-- add_column(:roles, :position, :integer, {default: 1})
+   -> 0.0007s
+== 20 AddRolePosition: migrated (0.0160s) =====================================
+
+== 21 AddTrackerPosition: migrating ===========================================
+-- add_column(:trackers, :position, :integer, {default: 1})
+   -> 0.0008s
+== 21 AddTrackerPosition: migrated (0.0061s) ==================================
+
+== 22 SerializePossiblesValues: migrating =====================================
+== 22 SerializePossiblesValues: migrated (0.0010s) ============================
+
+== 23 AddTrackerIsInRoadmap: migrating ========================================
+-- add_column(:trackers, :is_in_roadmap, :boolean, {default: true, null: false})
+   -> 0.0009s
+== 23 AddTrackerIsInRoadmap: migrated (0.0010s) ===============================
+
+== 24 AddRoadmapPermission: migrating =========================================
+== 24 AddRoadmapPermission: migrated (0.0029s) ================================
+
+== 25 AddSearchPermission: migrating ==========================================
+== 25 AddSearchPermission: migrated (0.0020s) =================================
+
+== 26 AddRepositoryLoginAndPassword: migrating ================================
+-- add_column(:repositories, :login, :string, {limit: 60, default: ""})
+   -> 0.0009s
+-- add_column(:repositories, :password, :string, {limit: 60, default: ""})
+   -> 0.0006s
+== 26 AddRepositoryLoginAndPassword: migrated (0.0017s) =======================
+
+== 27 CreateWikis: migrating ==================================================
+-- create_table(:wikis, {id: :integer})
+   -> 0.0043s
+-- add_index(:wikis, :project_id, {name: :wikis_project_id})
+   -> 0.0025s
+== 27 CreateWikis: migrated (0.0069s) =========================================
+
+== 28 CreateWikiPages: migrating ==============================================
+-- create_table(:wiki_pages, {id: :integer})
+   -> 0.0031s
+-- add_index(:wiki_pages, [:wiki_id, :title], {name: :wiki_pages_wiki_id_title})
+   -> 0.0024s
+== 28 CreateWikiPages: migrated (0.0056s) =====================================
+
+== 29 CreateWikiContents: migrating ===========================================
+-- create_table(:wiki_contents, {id: :integer})
+   -> 0.0066s
+-- add_index(:wiki_contents, :page_id, {name: :wiki_contents_page_id})
+   -> 0.0024s
+-- create_table(:wiki_content_versions, {id: :integer})
+   -> 0.0057s
+-- add_index(:wiki_content_versions, :wiki_content_id, {name: :wiki_content_versions_wcid})
+   -> 0.0023s
+== 29 CreateWikiContents: migrated (0.0174s) ==================================
+
+== 30 AddProjectsFeedsPermissions: migrating ==================================
+== 30 AddProjectsFeedsPermissions: migrated (0.0028s) =========================
+
+== 31 AddRepositoryRootUrl: migrating =========================================
+-- add_column(:repositories, :root_url, :string, {limit: 255, default: ""})
+   -> 0.0008s
+== 31 AddRepositoryRootUrl: migrated (0.0009s) ================================
+
+== 32 CreateTimeEntries: migrating ============================================
+-- create_table(:time_entries, {id: :integer})
+   -> 0.0031s
+-- add_index(:time_entries, [:project_id], {name: :time_entries_project_id})
+   -> 0.0026s
+-- add_index(:time_entries, [:issue_id], {name: :time_entries_issue_id})
+   -> 0.0024s
+== 32 CreateTimeEntries: migrated (0.0083s) ===================================
+
+== 33 AddTimelogPermissions: migrating ========================================
+== 33 AddTimelogPermissions: migrated (0.0030s) ===============================
+
+== 34 CreateChangesets: migrating =============================================
+-- create_table(:changesets, {id: :integer})
+   -> 0.0074s
+-- add_index(:changesets, [:repository_id, :revision], {unique: true, name: :changesets_repos_rev})
+   -> 0.0026s
+== 34 CreateChangesets: migrated (0.0101s) ====================================
+
+== 35 CreateChanges: migrating ================================================
+-- create_table(:changes, {id: :integer})
+   -> 0.0061s
+-- add_index(:changes, [:changeset_id], {name: :changesets_changeset_id})
+   -> 0.0023s
+== 35 CreateChanges: migrated (0.0085s) =======================================
+
+== 36 AddChangesetCommitDate: migrating =======================================
+-- add_column(:changesets, :commit_date, :date)
+   -> 0.0005s
+== 36 AddChangesetCommitDate: migrated (0.0125s) ==============================
+
+== 37 AddProjectIdentifier: migrating =========================================
+-- add_column(:projects, :identifier, :string, {limit: 20})
+   -> 0.0007s
+== 37 AddProjectIdentifier: migrated (0.0008s) ================================
+
+== 38 AddCustomFieldIsFilter: migrating =======================================
+-- add_column(:custom_fields, :is_filter, :boolean, {null: false, default: false})
+   -> 0.0008s
+== 38 AddCustomFieldIsFilter: migrated (0.0009s) ==============================
+
+== 39 CreateWatchers: migrating ===============================================
+-- create_table(:watchers, {id: :integer})
+   -> 0.0065s
+== 39 CreateWatchers: migrated (0.0066s) ======================================
+
+== 40 CreateChangesetsIssues: migrating =======================================
+-- create_table(:changesets_issues, {id: false})
+   -> 0.0008s
+-- add_index(:changesets_issues, [:changeset_id, :issue_id], {unique: true, name: :changesets_issues_ids})
+   -> 0.0025s
+== 40 CreateChangesetsIssues: migrated (0.0034s) ==============================
+
+== 41 RenameCommentToComments: migrating ======================================
+== 41 RenameCommentToComments: migrated (0.0179s) =============================
+
+== 42 CreateIssueRelations: migrating =========================================
+-- create_table(:issue_relations, {id: :integer})
+   -> 0.0070s
+== 42 CreateIssueRelations: migrated (0.0071s) ================================
+
+== 43 AddRelationsPermissions: migrating ======================================
+== 43 AddRelationsPermissions: migrated (0.0083s) =============================
+
+== 44 SetLanguageLengthToFive: migrating ======================================
+-- change_column(:users, :language, :string, {limit: 5})
+   -> 0.0010s
+== 44 SetLanguageLengthToFive: migrated (0.0028s) =============================
+
+== 45 CreateBoards: migrating =================================================
+-- create_table(:boards, {id: :integer})
+   -> 0.0077s
+-- add_index(:boards, [:project_id], {name: :boards_project_id})
+   -> 0.0024s
+== 45 CreateBoards: migrated (0.0104s) ========================================
+
+== 46 CreateMessages: migrating ===============================================
+-- create_table(:messages, {id: :integer})
+   -> 0.0066s
+-- add_index(:messages, [:board_id], {name: :messages_board_id})
+   -> 0.0027s
+-- add_index(:messages, [:parent_id], {name: :messages_parent_id})
+   -> 0.0024s
+== 46 CreateMessages: migrated (0.0120s) ======================================
+
+== 47 AddBoardsPermissions: migrating =========================================
+== 47 AddBoardsPermissions: migrated (0.0036s) ================================
+
+== 48 AllowNullVersionEffectiveDate: migrating ================================
+-- change_column(:versions, :effective_date, :date)
+   -> 0.0006s
+== 48 AllowNullVersionEffectiveDate: migrated (0.0025s) =======================
+
+== 49 AddWikiDestroyPagePermission: migrating =================================
+== 49 AddWikiDestroyPagePermission: migrated (0.0025s) ========================
+
+== 50 AddWikiAttachmentsPermissions: migrating ================================
+== 50 AddWikiAttachmentsPermissions: migrated (0.0045s) =======================
+
+== 51 AddProjectStatus: migrating =============================================
+-- add_column(:projects, :status, :integer, {default: 1, null: false})
+   -> 0.0011s
+== 51 AddProjectStatus: migrated (0.0012s) ====================================
+
+== 52 AddChangesRevision: migrating ===========================================
+-- add_column(:changes, :revision, :string)
+   -> 0.0006s
+== 52 AddChangesRevision: migrated (0.0007s) ==================================
+
+== 53 AddChangesBranch: migrating =============================================
+-- add_column(:changes, :branch, :string)
+   -> 0.0007s
+== 53 AddChangesBranch: migrated (0.0009s) ====================================
+
+== 54 AddChangesetsScmid: migrating ===========================================
+-- add_column(:changesets, :scmid, :string)
+   -> 0.0004s
+== 54 AddChangesetsScmid: migrated (0.0005s) ==================================
+
+== 55 AddRepositoriesType: migrating ==========================================
+-- add_column(:repositories, :type, :string)
+   -> 0.0005s
+== 55 AddRepositoriesType: migrated (0.0029s) =================================
+
+== 56 AddRepositoriesChangesPermission: migrating =============================
+== 56 AddRepositoriesChangesPermission: migrated (0.0028s) ====================
+
+== 57 AddVersionsWikiPageTitle: migrating =====================================
+-- add_column(:versions, :wiki_page_title, :string)
+   -> 0.0005s
+== 57 AddVersionsWikiPageTitle: migrated (0.0006s) ============================
+
+== 58 AddIssueCategoriesAssignedToId: migrating ===============================
+-- add_column(:issue_categories, :assigned_to_id, :integer)
+   -> 0.0008s
+== 58 AddIssueCategoriesAssignedToId: migrated (0.0008s) ======================
+
+== 59 AddRolesAssignable: migrating ===========================================
+-- add_column(:roles, :assignable, :boolean, {default: true})
+   -> 0.0007s
+== 59 AddRolesAssignable: migrated (0.0008s) ==================================
+
+== 60 ChangeChangesetsCommitterLimit: migrating ===============================
+-- change_column(:changesets, :committer, :string, {limit: nil})
+   -> 0.0004s
+== 60 ChangeChangesetsCommitterLimit: migrated (0.0005s) ======================
+
+== 61 AddRolesBuiltin: migrating ==============================================
+-- add_column(:roles, :builtin, :integer, {default: 0, null: false})
+   -> 0.0008s
+== 61 AddRolesBuiltin: migrated (0.0008s) =====================================
+
+== 62 InsertBuiltinRoles: migrating ===========================================
+== 62 InsertBuiltinRoles: migrated (0.6521s) ==================================
+
+== 63 AddRolesPermissions: migrating ==========================================
+-- add_column(:roles, :permissions, :text)
+   -> 0.0034s
+== 63 AddRolesPermissions: migrated (0.0036s) =================================
+
+== 64 DropPermissions: migrating ==============================================
+-- drop_table(:permissions)
+   -> 0.0009s
+-- drop_table(:permissions_roles)
+   -> 0.0005s
+== 64 DropPermissions: migrated (0.0014s) =====================================
+
+== 65 AddSettingsUpdatedOn: migrating =========================================
+-- add_column(:settings, :updated_on, :timestamp)
+   -> 0.0005s
+== 65 AddSettingsUpdatedOn: migrated (0.0015s) ================================
+
+== 66 AddCustomValueCustomizedIndex: migrating ================================
+-- add_index(:custom_values, [:customized_type, :customized_id], {name: :custom_values_customized})
+   -> 0.0028s
+== 66 AddCustomValueCustomizedIndex: migrated (0.0028s) =======================
+
+== 67 CreateWikiRedirects: migrating ==========================================
+-- create_table(:wiki_redirects, {id: :integer})
+   -> 0.0056s
+-- add_index(:wiki_redirects, [:wiki_id, :title], {name: :wiki_redirects_wiki_id_title})
+   -> 0.0023s
+== 67 CreateWikiRedirects: migrated (0.0081s) =================================
+
+== 68 CreateEnabledModules: migrating =========================================
+-- create_table(:enabled_modules, {id: :integer})
+   -> 0.0055s
+-- add_index(:enabled_modules, [:project_id], {name: :enabled_modules_project_id})
+   -> 0.0026s
+== 68 CreateEnabledModules: migrated (0.0244s) ================================
+
+== 69 AddIssuesEstimatedHours: migrating ======================================
+-- add_column(:issues, :estimated_hours, :float)
+   -> 0.0010s
+== 69 AddIssuesEstimatedHours: migrated (0.0021s) =============================
+
+== 70 ChangeAttachmentsContentTypeLimit: migrating ============================
+-- change_column(:attachments, :content_type, :string, {limit: nil})
+   -> 0.0006s
+== 70 ChangeAttachmentsContentTypeLimit: migrated (0.0007s) ===================
+
+== 71 AddQueriesColumnNames: migrating ========================================
+-- add_column(:queries, :column_names, :text)
+   -> 0.0006s
+== 71 AddQueriesColumnNames: migrated (0.0006s) ===============================
+
+== 72 AddEnumerationsPosition: migrating ======================================
+-- add_column(:enumerations, :position, :integer, {default: 1})
+   -> 0.0007s
+== 72 AddEnumerationsPosition: migrated (0.0065s) =============================
+
+== 73 AddEnumerationsIsDefault: migrating =====================================
+-- add_column(:enumerations, :is_default, :boolean, {default: false, null: false})
+   -> 0.0008s
+== 73 AddEnumerationsIsDefault: migrated (0.0009s) ============================
+
+== 74 AddAuthSourcesTls: migrating ============================================
+-- add_column(:auth_sources, :tls, :boolean, {default: false, null: false})
+   -> 0.0009s
+== 74 AddAuthSourcesTls: migrated (0.0010s) ===================================
+
+== 75 AddMembersMailNotification: migrating ===================================
+-- add_column(:members, :mail_notification, :boolean, {default: false, null: false})
+   -> 0.0009s
+== 75 AddMembersMailNotification: migrated (0.0010s) ==========================
+
+== 76 AllowNullPosition: migrating ============================================
+-- change_column(:issue_statuses, :position, :integer)
+   -> 0.0006s
+-- change_column(:roles, :position, :integer)
+   -> 0.0004s
+-- change_column(:trackers, :position, :integer)
+   -> 0.0004s
+-- change_column(:boards, :position, :integer)
+   -> 0.0006s
+-- change_column(:enumerations, :position, :integer)
+   -> 0.0005s
+== 76 AllowNullPosition: migrated (0.0110s) ===================================
+
+== 77 RemoveIssueStatusesHtmlColor: migrating =================================
+-- remove_column(:issue_statuses, :html_color)
+   -> 0.0007s
+== 77 RemoveIssueStatusesHtmlColor: migrated (0.0008s) ========================
+
+== 78 AddCustomFieldsPosition: migrating ======================================
+-- add_column(:custom_fields, :position, :integer, {default: 1})
+   -> 0.0014s
+== 78 AddCustomFieldsPosition: migrated (0.0020s) =============================
+
+== 79 AddUserPreferencesTimeZone: migrating ===================================
+-- add_column(:user_preferences, :time_zone, :string)
+   -> 0.0005s
+== 79 AddUserPreferencesTimeZone: migrated (0.0006s) ==========================
+
+== 80 AddUsersType: migrating =================================================
+-- add_column(:users, :type, :string)
+   -> 0.0030s
+== 80 AddUsersType: migrated (0.0157s) ========================================
+
+== 81 CreateProjectsTrackers: migrating =======================================
+-- create_table(:projects_trackers, {id: false})
+   -> 0.0013s
+-- add_index(:projects_trackers, :project_id, {name: :projects_trackers_project_id})
+   -> 0.0024s
+== 81 CreateProjectsTrackers: migrated (0.0047s) ==============================
+
+== 82 AddMessagesLocked: migrating ============================================
+-- add_column(:messages, :locked, :boolean, {default: false})
+   -> 0.0008s
+== 82 AddMessagesLocked: migrated (0.0009s) ===================================
+
+== 83 AddMessagesSticky: migrating ============================================
+-- add_column(:messages, :sticky, :integer, {default: 0})
+   -> 0.0007s
+== 83 AddMessagesSticky: migrated (0.0008s) ===================================
+
+== 84 ChangeAuthSourcesAccountLimit: migrating ================================
+-- change_column(:auth_sources, :account, :string, {limit: nil})
+   -> 0.0005s
+== 84 ChangeAuthSourcesAccountLimit: migrated (0.0005s) =======================
+
+== 85 AddRoleTrackerOldStatusIndexToWorkflows: migrating ======================
+-- add_index(:workflows, [:role_id, :tracker_id, :old_status_id], {name: :wkfs_role_tracker_old_status})
+   -> 0.0044s
+== 85 AddRoleTrackerOldStatusIndexToWorkflows: migrated (0.0045s) =============
+
+== 86 AddCustomFieldsSearchable: migrating ====================================
+-- add_column(:custom_fields, :searchable, :boolean, {default: false})
+   -> 0.0007s
+== 86 AddCustomFieldsSearchable: migrated (0.0008s) ===========================
+
+== 87 ChangeProjectsDescriptionToText: migrating ==============================
+-- change_column(:projects, :description, :text)
+   -> 0.0005s
+== 87 ChangeProjectsDescriptionToText: migrated (0.0023s) =====================
+
+== 88 AddCustomFieldsDefaultValue: migrating ==================================
+-- add_column(:custom_fields, :default_value, :text)
+   -> 0.0006s
+== 88 AddCustomFieldsDefaultValue: migrated (0.0007s) =========================
+
+== 89 AddAttachmentsDescription: migrating ====================================
+-- add_column(:attachments, :description, :string)
+   -> 0.0004s
+== 89 AddAttachmentsDescription: migrated (0.0005s) ===========================
+
+== 90 ChangeVersionsNameLimit: migrating ======================================
+-- change_column(:versions, :name, :string, {limit: nil})
+   -> 0.0006s
+== 90 ChangeVersionsNameLimit: migrated (0.0006s) =============================
+
+== 91 ChangeChangesetsRevisionToString: migrating =============================
+-- index_exists?(:changesets, [:repository_id, :revision], {name: "changesets_repos_rev"})
+   -> 0.0020s
+-- remove_index(:changesets, nil, {name: :changesets_repos_rev})
+   -> 0.0003s
+-- index_exists?(:changesets, [:repository_id, :revision], {name: "altered_changesets_repos_rev"})
+   -> 0.0006s
+-- change_column(:changesets, :revision, :string)
+   -> 0.0055s
+-- add_index(:changesets, [:repository_id, :revision], {unique: true, name: :changesets_repos_rev})
+   -> 0.0024s
+== 91 ChangeChangesetsRevisionToString: migrated (0.0133s) ====================
+
+== 92 ChangeChangesFromRevisionToString: migrating ============================
+-- change_column(:changes, :from_revision, :string)
+   -> 0.0076s
+== 92 ChangeChangesFromRevisionToString: migrated (0.0077s) ===================
+
+== 93 AddWikiPagesProtected: migrating ========================================
+-- add_column(:wiki_pages, :protected, :boolean, {default: false, null: false})
+   -> 0.0015s
+== 93 AddWikiPagesProtected: migrated (0.0017s) ===============================
+
+== 94 ChangeProjectsHomepageLimit: migrating ==================================
+-- change_column(:projects, :homepage, :string, {limit: nil})
+   -> 0.0006s
+== 94 ChangeProjectsHomepageLimit: migrated (0.0020s) =========================
+
+== 95 AddWikiPagesParentId: migrating =========================================
+-- add_column(:wiki_pages, :parent_id, :integer, {default: nil})
+   -> 0.0007s
+== 95 AddWikiPagesParentId: migrated (0.0008s) ================================
+
+== 96 AddCommitAccessPermission: migrating ====================================
+== 96 AddCommitAccessPermission: migrated (0.0008s) ===========================
+
+== 97 AddViewWikiEditsPermission: migrating ===================================
+== 97 AddViewWikiEditsPermission: migrated (0.0005s) ==========================
+
+== 98 SetTopicAuthorsAsWatchers: migrating ====================================
+== 98 SetTopicAuthorsAsWatchers: migrated (0.0087s) ===========================
+
+== 99 AddDeleteWikiPagesAttachmentsPermission: migrating ======================
+== 99 AddDeleteWikiPagesAttachmentsPermission: migrated (0.0005s) =============
+
+== 100 AddChangesetsUserId: migrating =========================================
+-- add_column(:changesets, :user_id, :integer, {default: nil})
+   -> 0.0009s
+== 100 AddChangesetsUserId: migrated (0.0009s) ================================
+
+== 101 PopulateChangesetsUserId: migrating ====================================
+== 101 PopulateChangesetsUserId: migrated (0.0007s) ===========================
+
+== 102 AddCustomFieldsEditable: migrating =====================================
+-- add_column(:custom_fields, :editable, :boolean, {default: true})
+   -> 0.0011s
+== 102 AddCustomFieldsEditable: migrated (0.0012s) ============================
+
+== 103 SetCustomFieldsEditable: migrating =====================================
+== 103 SetCustomFieldsEditable: migrated (0.0078s) ============================
+
+== 104 AddProjectsLftAndRgt: migrating ========================================
+-- add_column(:projects, :lft, :integer)
+   -> 0.0005s
+-- add_column(:projects, :rgt, :integer)
+   -> 0.0002s
+== 104 AddProjectsLftAndRgt: migrated (0.0009s) ===============================
+
+== 105 BuildProjectsTree: migrating ===========================================
+== 105 BuildProjectsTree: migrated (0.0048s) ==================================
+
+== 106 RemoveProjectsProjectsCount: migrating =================================
+-- remove_column(:projects, :projects_count)
+   -> 0.0005s
+== 106 RemoveProjectsProjectsCount: migrated (0.0006s) ========================
+
+== 107 AddOpenIdAuthenticationTables: migrating ===============================
+-- create_table(:open_id_authentication_associations, {force: true, id: :integer})
+   -> 0.0130s
+-- create_table(:open_id_authentication_nonces, {force: true, id: :integer})
+   -> 0.0055s
+== 107 AddOpenIdAuthenticationTables: migrated (0.0187s) ======================
+
+== 108 AddIdentityUrlToUsers: migrating =======================================
+-- add_column(:users, :identity_url, :string)
+   -> 0.0005s
+== 108 AddIdentityUrlToUsers: migrated (0.0006s) ==============================
+
+== 20090214190337 AddWatchersUserIdTypeIndex: migrating =======================
+-- add_index(:watchers, [:user_id, :watchable_type], {name: :watchers_user_id_type})
+   -> 0.0033s
+== 20090214190337 AddWatchersUserIdTypeIndex: migrated (0.0034s) ==============
+
+== 20090312172426 AddQueriesSortCriteria: migrating ===========================
+-- add_column(:queries, :sort_criteria, :text)
+   -> 0.0008s
+== 20090312172426 AddQueriesSortCriteria: migrated (0.0009s) ==================
+
+== 20090312194159 AddProjectsTrackersUniqueIndex: migrating ===================
+-- add_index(:projects_trackers, [:project_id, :tracker_id], {name: :projects_trackers_unique, unique: true})
+   -> 0.0023s
+== 20090312194159 AddProjectsTrackersUniqueIndex: migrated (0.0031s) ==========
+
+== 20090318181151 ExtendSettingsName: migrating ===============================
+-- change_column(:settings, :name, :string, {limit: 255})
+   -> 0.0006s
+== 20090318181151 ExtendSettingsName: migrated (0.0029s) ======================
+
+== 20090323224724 AddTypeToEnumerations: migrating ============================
+-- add_column(:enumerations, :type, :string)
+   -> 0.0026s
+== 20090323224724 AddTypeToEnumerations: migrated (0.0027s) ===================
+
+== 20090401221305 UpdateEnumerationsToSti: migrating ==========================
+== 20090401221305 UpdateEnumerationsToSti: migrated (0.0044s) =================
+
+== 20090401231134 AddActiveFieldToEnumerations: migrating =====================
+-- add_column(:enumerations, :active, :boolean, {default: true, null: false})
+   -> 0.0009s
+== 20090401231134 AddActiveFieldToEnumerations: migrated (0.0010s) ============
+
+== 20090403001910 AddProjectToEnumerations: migrating =========================
+-- add_column(:enumerations, :project_id, :integer, {null: true, default: nil})
+   -> 0.0007s
+-- add_index(:enumerations, :project_id, {name: "index_enumerations_on_project_id"})
+   -> 0.0023s
+== 20090403001910 AddProjectToEnumerations: migrated (0.0031s) ================
+
+== 20090406161854 AddParentIdToEnumerations: migrating ========================
+-- add_column(:enumerations, :parent_id, :integer, {null: true, default: nil})
+   -> 0.0009s
+== 20090406161854 AddParentIdToEnumerations: migrated (0.0010s) ===============
+
+== 20090425161243 AddQueriesGroupBy: migrating ================================
+-- add_column(:queries, :group_by, :string)
+   -> 0.0006s
+== 20090425161243 AddQueriesGroupBy: migrated (0.0007s) =======================
+
+== 20090503121501 CreateMemberRoles: migrating ================================
+-- create_table(:member_roles, {id: :integer})
+   -> 0.0045s
+== 20090503121501 CreateMemberRoles: migrated (0.0046s) =======================
+
+== 20090503121505 PopulateMemberRoles: migrating ==============================
+== 20090503121505 PopulateMemberRoles: migrated (0.0070s) =====================
+
+== 20090503121510 DropMembersRoleId: migrating ================================
+-- remove_column(:members, :role_id)
+   -> 0.0005s
+== 20090503121510 DropMembersRoleId: migrated (0.0005s) =======================
+
+== 20090614091200 FixMessagesStickyNull: migrating ============================
+== 20090614091200 FixMessagesStickyNull: migrated (0.0029s) ===================
+
+== 20090704172350 PopulateUsersType: migrating ================================
+== 20090704172350 PopulateUsersType: migrated (0.0009s) =======================
+
+== 20090704172355 CreateGroupsUsers: migrating ================================
+-- create_table(:groups_users, {id: false})
+   -> 0.0007s
+-- add_index(:groups_users, [:group_id, :user_id], {unique: true, name: :groups_users_ids})
+   -> 0.0024s
+== 20090704172355 CreateGroupsUsers: migrated (0.0033s) =======================
+
+== 20090704172358 AddMemberRolesInheritedFrom: migrating ======================
+-- add_column(:member_roles, :inherited_from, :integer)
+   -> 0.0005s
+== 20090704172358 AddMemberRolesInheritedFrom: migrated (0.0006s) =============
+
+== 20091010093521 FixUsersCustomValues: migrating =============================
+== 20091010093521 FixUsersCustomValues: migrated (0.0035s) ====================
+
+== 20091017212227 AddMissingIndexesToWorkflows: migrating =====================
+-- add_index(:workflows, :old_status_id, {name: "index_workflows_on_old_status_id"})
+   -> 0.0025s
+-- add_index(:workflows, :role_id, {name: "index_workflows_on_role_id"})
+   -> 0.0024s
+-- add_index(:workflows, :new_status_id, {name: "index_workflows_on_new_status_id"})
+   -> 0.0023s
+== 20091017212227 AddMissingIndexesToWorkflows: migrated (0.0073s) ============
+
+== 20091017212457 AddMissingIndexesToCustomFieldsProjects: migrating ==========
+-- add_index(:custom_fields_projects, [:custom_field_id, :project_id], {name: "index_custom_fields_projects_on_custom_field_id_and_project_id"})
+   -> 0.0030s
+== 20091017212457 AddMissingIndexesToCustomFieldsProjects: migrated (0.0031s) =
+
+== 20091017212644 AddMissingIndexesToMessages: migrating ======================
+-- add_index(:messages, :last_reply_id, {name: "index_messages_on_last_reply_id"})
+   -> 0.0026s
+-- add_index(:messages, :author_id, {name: "index_messages_on_author_id"})
+   -> 0.0025s
+== 20091017212644 AddMissingIndexesToMessages: migrated (0.0052s) =============
+
+== 20091017212938 AddMissingIndexesToRepositories: migrating ==================
+-- add_index(:repositories, :project_id, {name: "index_repositories_on_project_id"})
+   -> 0.0025s
+== 20091017212938 AddMissingIndexesToRepositories: migrated (0.0026s) =========
+
+== 20091017213027 AddMissingIndexesToComments: migrating ======================
+-- add_index(:comments, [:commented_id, :commented_type], {name: "index_comments_on_commented_id_and_commented_type"})
+   -> 0.0024s
+-- add_index(:comments, :author_id, {name: "index_comments_on_author_id"})
+   -> 0.0023s
+== 20091017213027 AddMissingIndexesToComments: migrated (0.0048s) =============
+
+== 20091017213113 AddMissingIndexesToEnumerations: migrating ==================
+-- add_index(:enumerations, [:id, :type], {name: "index_enumerations_on_id_and_type"})
+   -> 0.0027s
+== 20091017213113 AddMissingIndexesToEnumerations: migrated (0.0028s) =========
+
+== 20091017213151 AddMissingIndexesToWikiPages: migrating =====================
+-- add_index(:wiki_pages, :wiki_id, {name: "index_wiki_pages_on_wiki_id"})
+   -> 0.0023s
+-- add_index(:wiki_pages, :parent_id, {name: "index_wiki_pages_on_parent_id"})
+   -> 0.0024s
+== 20091017213151 AddMissingIndexesToWikiPages: migrated (0.0049s) ============
+
+== 20091017213228 AddMissingIndexesToWatchers: migrating ======================
+-- add_index(:watchers, :user_id, {name: "index_watchers_on_user_id"})
+   -> 0.0025s
+-- add_index(:watchers, [:watchable_id, :watchable_type], {name: "index_watchers_on_watchable_id_and_watchable_type"})
+   -> 0.0022s
+== 20091017213228 AddMissingIndexesToWatchers: migrated (0.0049s) =============
+
+== 20091017213257 AddMissingIndexesToAuthSources: migrating ===================
+-- add_index(:auth_sources, [:id, :type], {name: "index_auth_sources_on_id_and_type"})
+   -> 0.0029s
+== 20091017213257 AddMissingIndexesToAuthSources: migrated (0.0030s) ==========
+
+== 20091017213332 AddMissingIndexesToDocuments: migrating =====================
+-- add_index(:documents, :category_id, {name: "index_documents_on_category_id"})
+   -> 0.0027s
+== 20091017213332 AddMissingIndexesToDocuments: migrated (0.0028s) ============
+
+== 20091017213444 AddMissingIndexesToTokens: migrating ========================
+-- add_index(:tokens, :user_id, {name: "index_tokens_on_user_id"})
+   -> 0.0034s
+== 20091017213444 AddMissingIndexesToTokens: migrated (0.0035s) ===============
+
+== 20091017213536 AddMissingIndexesToChangesets: migrating ====================
+-- add_index(:changesets, :user_id, {name: "index_changesets_on_user_id"})
+   -> 0.0027s
+-- add_index(:changesets, :repository_id, {name: "index_changesets_on_repository_id"})
+   -> 0.0026s
+== 20091017213536 AddMissingIndexesToChangesets: migrated (0.0055s) ===========
+
+== 20091017213642 AddMissingIndexesToIssueCategories: migrating ===============
+-- add_index(:issue_categories, :assigned_to_id, {name: "index_issue_categories_on_assigned_to_id"})
+   -> 0.0028s
+== 20091017213642 AddMissingIndexesToIssueCategories: migrated (0.0029s) ======
+
+== 20091017213716 AddMissingIndexesToMemberRoles: migrating ===================
+-- add_index(:member_roles, :member_id, {name: "index_member_roles_on_member_id"})
+   -> 0.0029s
+-- add_index(:member_roles, :role_id, {name: "index_member_roles_on_role_id"})
+   -> 0.0026s
+== 20091017213716 AddMissingIndexesToMemberRoles: migrated (0.0057s) ==========
+
+== 20091017213757 AddMissingIndexesToBoards: migrating ========================
+-- add_index(:boards, :last_message_id, {name: "index_boards_on_last_message_id"})
+   -> 0.0032s
+== 20091017213757 AddMissingIndexesToBoards: migrated (0.0033s) ===============
+
+== 20091017213835 AddMissingIndexesToUserPreferences: migrating ===============
+-- add_index(:user_preferences, :user_id, {name: "index_user_preferences_on_user_id"})
+   -> 0.0037s
+== 20091017213835 AddMissingIndexesToUserPreferences: migrated (0.0038s) ======
+
+== 20091017213910 AddMissingIndexesToIssues: migrating ========================
+-- add_index(:issues, :status_id, {name: "index_issues_on_status_id"})
+   -> 0.0029s
+-- add_index(:issues, :category_id, {name: "index_issues_on_category_id"})
+   -> 0.0024s
+-- add_index(:issues, :assigned_to_id, {name: "index_issues_on_assigned_to_id"})
+   -> 0.0024s
+-- add_index(:issues, :fixed_version_id, {name: "index_issues_on_fixed_version_id"})
+   -> 0.0024s
+-- add_index(:issues, :tracker_id, {name: "index_issues_on_tracker_id"})
+   -> 0.0027s
+-- add_index(:issues, :priority_id, {name: "index_issues_on_priority_id"})
+   -> 0.0025s
+-- add_index(:issues, :author_id, {name: "index_issues_on_author_id"})
+   -> 0.0024s
+== 20091017213910 AddMissingIndexesToIssues: migrated (0.0183s) ===============
+
+== 20091017214015 AddMissingIndexesToMembers: migrating =======================
+-- add_index(:members, :user_id, {name: "index_members_on_user_id"})
+   -> 0.0028s
+-- add_index(:members, :project_id, {name: "index_members_on_project_id"})
+   -> 0.0024s
+== 20091017214015 AddMissingIndexesToMembers: migrated (0.0054s) ==============
+
+== 20091017214107 AddMissingIndexesToCustomFields: migrating ==================
+-- add_index(:custom_fields, [:id, :type], {name: "index_custom_fields_on_id_and_type"})
+   -> 0.0027s
+== 20091017214107 AddMissingIndexesToCustomFields: migrated (0.0028s) =========
+
+== 20091017214136 AddMissingIndexesToQueries: migrating =======================
+-- add_index(:queries, :project_id, {name: "index_queries_on_project_id"})
+   -> 0.0026s
+-- add_index(:queries, :user_id, {name: "index_queries_on_user_id"})
+   -> 0.0024s
+== 20091017214136 AddMissingIndexesToQueries: migrated (0.0052s) ==============
+
+== 20091017214236 AddMissingIndexesToTimeEntries: migrating ===================
+-- add_index(:time_entries, :activity_id, {name: "index_time_entries_on_activity_id"})
+   -> 0.0028s
+-- add_index(:time_entries, :user_id, {name: "index_time_entries_on_user_id"})
+   -> 0.0035s
+== 20091017214236 AddMissingIndexesToTimeEntries: migrated (0.0066s) ==========
+
+== 20091017214308 AddMissingIndexesToNews: migrating ==========================
+-- add_index(:news, :author_id, {name: "index_news_on_author_id"})
+   -> 0.0026s
+== 20091017214308 AddMissingIndexesToNews: migrated (0.0027s) =================
+
+== 20091017214336 AddMissingIndexesToUsers: migrating =========================
+-- add_index(:users, [:id, :type], {name: "index_users_on_id_and_type"})
+   -> 0.0026s
+-- add_index(:users, :auth_source_id, {name: "index_users_on_auth_source_id"})
+   -> 0.0023s
+== 20091017214336 AddMissingIndexesToUsers: migrated (0.0050s) ================
+
+== 20091017214406 AddMissingIndexesToAttachments: migrating ===================
+-- add_index(:attachments, [:container_id, :container_type], {name: "index_attachments_on_container_id_and_container_type"})
+   -> 0.0028s
+-- add_index(:attachments, :author_id, {name: "index_attachments_on_author_id"})
+   -> 0.0023s
+== 20091017214406 AddMissingIndexesToAttachments: migrated (0.0053s) ==========
+
+== 20091017214440 AddMissingIndexesToWikiContents: migrating ==================
+-- add_index(:wiki_contents, :author_id, {name: "index_wiki_contents_on_author_id"})
+   -> 0.0025s
+== 20091017214440 AddMissingIndexesToWikiContents: migrated (0.0026s) =========
+
+== 20091017214519 AddMissingIndexesToCustomValues: migrating ==================
+-- add_index(:custom_values, :custom_field_id, {name: "index_custom_values_on_custom_field_id"})
+   -> 0.0024s
+== 20091017214519 AddMissingIndexesToCustomValues: migrated (0.0025s) =========
+
+== 20091017214611 AddMissingIndexesToJournals: migrating ======================
+-- add_index(:journals, :user_id, {name: "index_journals_on_user_id"})
+   -> 0.0023s
+-- add_index(:journals, :journalized_id, {name: "index_journals_on_journalized_id"})
+   -> 0.0023s
+== 20091017214611 AddMissingIndexesToJournals: migrated (0.0047s) =============
+
+== 20091017214644 AddMissingIndexesToIssueRelations: migrating ================
+-- add_index(:issue_relations, :issue_from_id, {name: "index_issue_relations_on_issue_from_id"})
+   -> 0.0031s
+-- add_index(:issue_relations, :issue_to_id, {name: "index_issue_relations_on_issue_to_id"})
+   -> 0.0026s
+== 20091017214644 AddMissingIndexesToIssueRelations: migrated (0.0059s) =======
+
+== 20091017214720 AddMissingIndexesToWikiRedirects: migrating =================
+-- add_index(:wiki_redirects, :wiki_id, {name: "index_wiki_redirects_on_wiki_id"})
+   -> 0.0027s
+== 20091017214720 AddMissingIndexesToWikiRedirects: migrated (0.0027s) ========
+
+== 20091017214750 AddMissingIndexesToCustomFieldsTrackers: migrating ==========
+-- add_index(:custom_fields_trackers, [:custom_field_id, :tracker_id], {name: "index_custom_fields_trackers_on_custom_field_id_and_tracker_id"})
+   -> 0.0027s
+== 20091017214750 AddMissingIndexesToCustomFieldsTrackers: migrated (0.0028s) =
+
+== 20091025163651 AddActivityIndexes: migrating ===============================
+-- add_index(:journals, :created_on, {name: "index_journals_on_created_on"})
+   -> 0.0026s
+-- add_index(:changesets, :committed_on, {name: "index_changesets_on_committed_on"})
+   -> 0.0023s
+-- add_index(:wiki_content_versions, :updated_on, {name: "index_wiki_content_versions_on_updated_on"})
+   -> 0.0021s
+-- add_index(:messages, :created_on, {name: "index_messages_on_created_on"})
+   -> 0.0024s
+-- add_index(:issues, :created_on, {name: "index_issues_on_created_on"})
+   -> 0.0025s
+-- add_index(:news, :created_on, {name: "index_news_on_created_on"})
+   -> 0.0027s
+-- add_index(:attachments, :created_on, {name: "index_attachments_on_created_on"})
+   -> 0.0026s
+-- add_index(:documents, :created_on, {name: "index_documents_on_created_on"})
+   -> 0.0024s
+-- add_index(:time_entries, :created_on, {name: "index_time_entries_on_created_on"})
+   -> 0.0023s
+== 20091025163651 AddActivityIndexes: migrated (0.0226s) ======================
+
+== 20091108092559 AddVersionsStatus: migrating ================================
+-- add_column(:versions, :status, :string, {default: "open"})
+   -> 0.0009s
+== 20091108092559 AddVersionsStatus: migrated (0.0076s) =======================
+
+== 20091114105931 AddViewIssuesPermission: migrating ==========================
+== 20091114105931 AddViewIssuesPermission: migrated (0.0074s) =================
+
+== 20091123212029 AddDefaultDoneRatioToIssueStatus: migrating =================
+-- add_column(:issue_statuses, :default_done_ratio, :integer)
+   -> 0.0006s
+== 20091123212029 AddDefaultDoneRatioToIssueStatus: migrated (0.0006s) ========
+
+== 20091205124427 AddVersionsSharing: migrating ===============================
+-- add_column(:versions, :sharing, :string, {default: "none", null: false})
+   -> 0.0008s
+-- add_index(:versions, :sharing, {name: "index_versions_on_sharing"})
+   -> 0.0026s
+== 20091205124427 AddVersionsSharing: migrated (0.0035s) ======================
+
+== 20091220183509 AddLftAndRgtIndexesToProjects: migrating ====================
+-- add_index(:projects, :lft, {name: "index_projects_on_lft"})
+   -> 0.0026s
+-- add_index(:projects, :rgt, {name: "index_projects_on_rgt"})
+   -> 0.0024s
+== 20091220183509 AddLftAndRgtIndexesToProjects: migrated (0.0051s) ===========
+
+== 20091220183727 AddIndexToSettingsName: migrating ===========================
+-- add_index(:settings, :name, {name: "index_settings_on_name"})
+   -> 0.0028s
+== 20091220183727 AddIndexToSettingsName: migrated (0.0029s) ==================
+
+== 20091220184736 AddIndexesToIssueStatus: migrating ==========================
+-- add_index(:issue_statuses, :position, {name: "index_issue_statuses_on_position"})
+   -> 0.0027s
+-- add_index(:issue_statuses, :is_closed, {name: "index_issue_statuses_on_is_closed"})
+   -> 0.0024s
+-- add_index(:issue_statuses, :is_default, {name: "index_issue_statuses_on_is_default"})
+   -> 0.0037s
+== 20091220184736 AddIndexesToIssueStatus: migrated (0.0090s) =================
+
+== 20091225164732 RemoveEnumerationsOpt: migrating ============================
+-- remove_column(:enumerations, :opt)
+   -> 0.0006s
+== 20091225164732 RemoveEnumerationsOpt: migrated (0.0006s) ===================
+
+== 20091227112908 ChangeWikiContentsTextLimit: migrating ======================
+== 20091227112908 ChangeWikiContentsTextLimit: migrated (0.0000s) =============
+
+== 20100129193402 ChangeUsersMailNotificationToString: migrating ==============
+-- rename_column(:users, :mail_notification, :mail_notification_bool)
+   -> 0.0018s
+-- add_column(:users, :mail_notification, :string, {default: "", null: false})
+   -> 0.0009s
+-- remove_column(:users, :mail_notification_bool)
+   -> 0.0004s
+== 20100129193402 ChangeUsersMailNotificationToString: migrated (0.0050s) =====
+
+== 20100129193813 UpdateMailNotificationValues: migrating =====================
+== 20100129193813 UpdateMailNotificationValues: migrated (0.0000s) ============
+
+== 20100221100219 AddIndexOnChangesetsScmid: migrating ========================
+-- add_index(:changesets, [:repository_id, :scmid], {name: :changesets_repos_scmid})
+   -> 0.0025s
+== 20100221100219 AddIndexOnChangesetsScmid: migrated (0.0026s) ===============
+
+== 20100313132032 AddIssuesNestedSetsColumns: migrating =======================
+-- add_column(:issues, :parent_id, :integer, {default: nil})
+   -> 0.0008s
+-- add_column(:issues, :root_id, :integer, {default: nil})
+   -> 0.0006s
+-- add_column(:issues, :lft, :integer, {default: nil})
+   -> 0.0004s
+-- add_column(:issues, :rgt, :integer, {default: nil})
+   -> 0.0005s
+== 20100313132032 AddIssuesNestedSetsColumns: migrated (0.0281s) ==============
+
+== 20100313171051 AddIndexOnIssuesNestedSet: migrating ========================
+-- add_index(:issues, [:root_id, :lft, :rgt], {name: "index_issues_on_root_id_and_lft_and_rgt"})
+   -> 0.0031s
+== 20100313171051 AddIndexOnIssuesNestedSet: migrated (0.0032s) ===============
+
+== 20100705164950 ChangeChangesPathLengthLimit: migrating =====================
+-- change_column(:changes, :path, :text)
+   -> 0.0007s
+-- change_column(:changes, :path, :text)
+   -> 0.0003s
+-- change_column(:changes, :from_path, :text)
+   -> 0.0004s
+== 20100705164950 ChangeChangesPathLengthLimit: migrated (0.0033s) ============
+
+== 20100819172912 EnableCalendarAndGanttModulesWhereAppropriate: migrating ====
+== 20100819172912 EnableCalendarAndGanttModulesWhereAppropriate: migrated (0.0047s)
+
+== 20101104182107 AddUniqueIndexOnMembers: migrating ==========================
+-- add_index(:members, [:user_id, :project_id], {unique: true, name: "index_members_on_user_id_and_project_id"})
+   -> 0.0027s
+== 20101104182107 AddUniqueIndexOnMembers: migrated (0.0050s) =================
+
+== 20101107130441 AddCustomFieldsVisible: migrating ===========================
+-- add_column(:custom_fields, :visible, :boolean, {null: false, default: true})
+   -> 0.0010s
+== 20101107130441 AddCustomFieldsVisible: migrated (0.0017s) ==================
+
+== 20101114115114 ChangeProjectsNameLimit: migrating ==========================
+-- change_column(:projects, :name, :string, {limit: nil})
+   -> 0.0006s
+== 20101114115114 ChangeProjectsNameLimit: migrated (0.0034s) =================
+
+== 20101114115359 ChangeProjectsIdentifierLimit: migrating ====================
+-- change_column(:projects, :identifier, :string, {limit: nil})
+   -> 0.0005s
+== 20101114115359 ChangeProjectsIdentifierLimit: migrated (0.0006s) ===========
+
+== 20110220160626 AddWorkflowsAssigneeAndAuthor: migrating ====================
+-- add_column(:workflows, :assignee, :boolean, {null: false, default: false})
+   -> 0.0015s
+-- add_column(:workflows, :author, :boolean, {null: false, default: false})
+   -> 0.0007s
+== 20110220160626 AddWorkflowsAssigneeAndAuthor: migrated (0.0085s) ===========
+
+== 20110223180944 AddUsersSalt: migrating =====================================
+-- add_column(:users, :salt, :string, {limit: 64})
+   -> 0.0006s
+== 20110223180944 AddUsersSalt: migrated (0.0007s) ============================
+
+== 20110223180953 SaltUserPasswords: migrating ================================
+-- Salting user passwords, this may take some time...
+   -> 0.0099s
+== 20110223180953 SaltUserPasswords: migrated (0.0100s) =======================
+
+== 20110224000000 AddRepositoriesPathEncoding: migrating ======================
+-- add_column(:repositories, :path_encoding, :string, {limit: 64, default: nil})
+   -> 0.0008s
+== 20110224000000 AddRepositoriesPathEncoding: migrated (0.0009s) =============
+
+== 20110226120112 ChangeRepositoriesPasswordLimit: migrating ==================
+-- change_column(:repositories, :password, :string, {limit: nil})
+   -> 0.0006s
+== 20110226120112 ChangeRepositoriesPasswordLimit: migrated (0.0020s) =========
+
+== 20110226120132 ChangeAuthSourcesAccountPasswordLimit: migrating ============
+-- change_column(:auth_sources, :account_password, :string, {limit: nil})
+   -> 0.0009s
+== 20110226120132 ChangeAuthSourcesAccountPasswordLimit: migrated (0.0025s) ===
+
+== 20110227125750 ChangeJournalDetailsValuesToText: migrating =================
+-- change_column(:journal_details, :old_value, :text)
+   -> 0.0007s
+-- change_column(:journal_details, :value, :text)
+   -> 0.0004s
+== 20110227125750 ChangeJournalDetailsValuesToText: migrated (0.0012s) ========
+
+== 20110228000000 AddRepositoriesLogEncoding: migrating =======================
+-- add_column(:repositories, :log_encoding, :string, {limit: 64, default: nil})
+   -> 0.0009s
+== 20110228000000 AddRepositoriesLogEncoding: migrated (0.0010s) ==============
+
+== 20110228000100 CopyRepositoriesLogEncoding: migrating ======================
+== 20110228000100 CopyRepositoriesLogEncoding: migrated (0.0019s) =============
+
+== 20110401192910 AddIndexToUsersType: migrating ==============================
+-- add_index(:users, :type, {name: "index_users_on_type"})
+   -> 0.0026s
+== 20110401192910 AddIndexToUsersType: migrated (0.0027s) =====================
+
+== 20110408103312 AddRolesIssuesVisibility: migrating =========================
+-- add_column(:roles, :issues_visibility, :string, {limit: 30, default: "default", null: false})
+   -> 0.0010s
+== 20110408103312 AddRolesIssuesVisibility: migrated (0.0011s) ================
+
+== 20110412065600 AddIssuesIsPrivate: migrating ===============================
+-- add_column(:issues, :is_private, :boolean, {default: false, null: false})
+   -> 0.0010s
+== 20110412065600 AddIssuesIsPrivate: migrated (0.0011s) ======================
+
+== 20110511000000 AddRepositoriesExtraInfo: migrating =========================
+-- add_column(:repositories, :extra_info, :text)
+   -> 0.0005s
+== 20110511000000 AddRepositoriesExtraInfo: migrated (0.0006s) ================
+
+== 20110902000000 CreateChangesetParents: migrating ===========================
+-- create_table(:changeset_parents, {id: false})
+   -> 0.0008s
+-- add_index(:changeset_parents, [:changeset_id], {unique: false, name: :changeset_parents_changeset_ids})
+   -> 0.0023s
+-- add_index(:changeset_parents, [:parent_id], {unique: false, name: :changeset_parents_parent_ids})
+   -> 0.0021s
+== 20110902000000 CreateChangesetParents: migrated (0.0055s) ==================
+
+== 20111201201315 AddUniqueIndexToIssueRelations: migrating ===================
+-- add_index(:issue_relations, [:issue_from_id, :issue_to_id], {unique: true, name: "index_issue_relations_on_issue_from_id_and_issue_to_id"})
+   -> 0.0024s
+== 20111201201315 AddUniqueIndexToIssueRelations: migrated (0.0055s) ==========
+
+== 20120115143024 AddRepositoriesIdentifier: migrating ========================
+-- add_column(:repositories, :identifier, :string)
+   -> 0.0005s
+== 20120115143024 AddRepositoriesIdentifier: migrated (0.0006s) ===============
+
+== 20120115143100 AddRepositoriesIsDefault: migrating =========================
+-- add_column(:repositories, :is_default, :boolean, {default: false})
+   -> 0.0009s
+== 20120115143100 AddRepositoriesIsDefault: migrated (0.0010s) ================
+
+== 20120115143126 SetDefaultRepositories: migrating ===========================
+== 20120115143126 SetDefaultRepositories: migrated (0.0011s) ==================
+
+== 20120127174243 AddCustomFieldsMultiple: migrating ==========================
+-- add_column(:custom_fields, :multiple, :boolean, {default: false})
+   -> 0.0009s
+== 20120127174243 AddCustomFieldsMultiple: migrated (0.0009s) =================
+
+== 20120205111326 ChangeUsersLoginLimit: migrating ============================
+-- change_column(:users, :login, :string, {limit: nil})
+   -> 0.0013s
+== 20120205111326 ChangeUsersLoginLimit: migrated (0.0048s) ===================
+
+== 20120223110929 ChangeAttachmentsContainerDefaults: migrating ===============
+-- remove_index(:attachments, [:container_id, :container_type], {name: "index_attachments_on_container_id_and_container_type"})
+   -> 0.0018s
+-- change_column(:attachments, :container_id, :integer)
+   -> 0.0004s
+-- change_column(:attachments, :container_type, :string, {limit: 30})
+   -> 0.0004s
+-- add_index(:attachments, [:container_id, :container_type], {name: "index_attachments_on_container_id_and_container_type"})
+   -> 0.0028s
+== 20120223110929 ChangeAttachmentsContainerDefaults: migrated (0.0388s) ======
+
+== 20120301153455 AddAuthSourcesFilter: migrating =============================
+-- add_column(:auth_sources, :filter, :string)
+   -> 0.0005s
+== 20120301153455 AddAuthSourcesFilter: migrated (0.0006s) ====================
+
+== 20120422150750 ChangeRepositoriesToFullSti: migrating ======================
+== 20120422150750 ChangeRepositoriesToFullSti: migrated (0.0004s) =============
+
+== 20120705074331 AddTrackersFieldsBits: migrating ============================
+-- add_column(:trackers, :fields_bits, :integer, {default: 0})
+   -> 0.0009s
+== 20120705074331 AddTrackersFieldsBits: migrated (0.0010s) ===================
+
+== 20120707064544 AddAuthSourcesTimeout: migrating ============================
+-- add_column(:auth_sources, :timeout, :integer)
+   -> 0.0005s
+== 20120707064544 AddAuthSourcesTimeout: migrated (0.0006s) ===================
+
+== 20120714122000 AddWorkflowsType: migrating =================================
+-- add_column(:workflows, :type, :string, {limit: 30})
+   -> 0.0006s
+== 20120714122000 AddWorkflowsType: migrated (0.0006s) ========================
+
+== 20120714122100 UpdateWorkflowsToSti: migrating =============================
+== 20120714122100 UpdateWorkflowsToSti: migrated (0.0007s) ====================
+
+== 20120714122200 AddWorkflowsRuleFields: migrating ===========================
+-- add_column(:workflows, :field_name, :string, {limit: 30})
+   -> 0.0004s
+-- add_column(:workflows, :rule, :string, {limit: 30})
+   -> 0.0003s
+== 20120714122200 AddWorkflowsRuleFields: migrated (0.0008s) ==================
+
+== 20120731164049 AddBoardsParentId: migrating ================================
+-- add_column(:boards, :parent_id, :integer)
+   -> 0.0004s
+== 20120731164049 AddBoardsParentId: migrated (0.0005s) =======================
+
+== 20120930112914 AddJournalsPrivateNotes: migrating ==========================
+-- add_column(:journals, :private_notes, :boolean, {default: false, null: false})
+   -> 0.0008s
+== 20120930112914 AddJournalsPrivateNotes: migrated (0.0009s) =================
+
+== 20121026002032 AddEnumerationsPositionName: migrating ======================
+-- add_column(:enumerations, :position_name, :string, {limit: 30})
+   -> 0.0005s
+== 20121026002032 AddEnumerationsPositionName: migrated (0.0006s) =============
+
+== 20121026003537 PopulateEnumerationsPositionName: migrating =================
+== 20121026003537 PopulateEnumerationsPositionName: migrated (0.0032s) ========
+
+== 20121209123234 AddQueriesType: migrating ===================================
+-- add_column(:queries, :type, :string)
+   -> 0.0005s
+== 20121209123234 AddQueriesType: migrated (0.0006s) ==========================
+
+== 20121209123358 UpdateQueriesToSti: migrating ===============================
+== 20121209123358 UpdateQueriesToSti: migrated (0.0112s) ======================
+
+== 20121213084931 AddAttachmentsDiskDirectory: migrating ======================
+-- add_column(:attachments, :disk_directory, :string)
+   -> 0.0006s
+== 20121213084931 AddAttachmentsDiskDirectory: migrated (0.0007s) =============
+
+== 20130110122628 SplitDocumentsPermissions: migrating ========================
+== 20130110122628 SplitDocumentsPermissions: migrated (0.0007s) ===============
+
+== 20130201184705 AddUniqueIndexOnTokensValue: migrating ======================
+-- Adding unique index on tokens, this may take some time...
+-- add_index(:tokens, :value, {unique: true, name: "tokens_value"})
+   -> 0.0025s
+   -> 0.0077s
+== 20130201184705 AddUniqueIndexOnTokensValue: migrated (0.0077s) =============
+
+== 20130202090625 AddProjectsInheritMembers: migrating ========================
+-- add_column(:projects, :inherit_members, :boolean, {default: false, null: false})
+   -> 0.0008s
+== 20130202090625 AddProjectsInheritMembers: migrated (0.0009s) ===============
+
+== 20130207175206 AddUniqueIndexOnCustomFieldsTrackers: migrating =============
+-- index_exists?(:custom_fields_trackers, [:custom_field_id, :tracker_id], {name: "index_custom_fields_trackers_on_custom_field_id_and_tracker_id"})
+   -> 0.0010s
+-- remove_index(:custom_fields_trackers, [:custom_field_id, :tracker_id], {name: "index_custom_fields_trackers_on_custom_field_id_and_tracker_id"})
+   -> 0.0013s
+-- add_index(:custom_fields_trackers, [:custom_field_id, :tracker_id], {unique: true, name: "index_custom_fields_trackers_on_custom_field_id_and_tracker_id"})
+   -> 0.0023s
+== 20130207175206 AddUniqueIndexOnCustomFieldsTrackers: migrated (0.0060s) ====
+
+== 20130207181455 AddUniqueIndexOnCustomFieldsProjects: migrating =============
+-- index_exists?(:custom_fields_projects, [:custom_field_id, :project_id], {name: "index_custom_fields_projects_on_custom_field_id_and_project_id"})
+   -> 0.0015s
+-- remove_index(:custom_fields_projects, [:custom_field_id, :project_id], {name: "index_custom_fields_projects_on_custom_field_id_and_project_id"})
+   -> 0.0012s
+-- add_index(:custom_fields_projects, [:custom_field_id, :project_id], {unique: true, name: "index_custom_fields_projects_on_custom_field_id_and_project_id"})
+   -> 0.0025s
+== 20130207181455 AddUniqueIndexOnCustomFieldsProjects: migrated (0.0065s) ====
+
+== 20130215073721 ChangeUsersLastnameLengthTo255: migrating ===================
+-- change_column(:users, :lastname, :string, {limit: 255})
+   -> 0.0007s
+== 20130215073721 ChangeUsersLastnameLengthTo255: migrated (0.0042s) ==========
+
+== 20130215111127 AddIssuesClosedOn: migrating ================================
+-- add_column(:issues, :closed_on, :timestamp, {default: nil, precision: nil})
+   -> 0.0012s
+== 20130215111127 AddIssuesClosedOn: migrated (0.0013s) =======================
+
+== 20130215111141 PopulateIssuesClosedOn: migrating ===========================
+== 20130215111141 PopulateIssuesClosedOn: migrated (0.0024s) ==================
+
+== 20130217094251 RemoveIssuesDefaultFkValues: migrating ======================
+-- change_column_default(:issues, :tracker_id, nil)
+   -> 0.0016s
+-- change_column_default(:issues, :project_id, nil)
+   -> 0.0014s
+-- change_column_default(:issues, :status_id, nil)
+   -> 0.0013s
+-- change_column_default(:issues, :assigned_to_id, nil)
+   -> 0.0013s
+-- change_column_default(:issues, :priority_id, nil)
+   -> 0.0014s
+-- change_column_default(:issues, :author_id, nil)
+   -> 0.0016s
+== 20130217094251 RemoveIssuesDefaultFkValues: migrated (0.0090s) =============
+
+== 20130602092539 CreateQueriesRoles: migrating ===============================
+-- create_table(:queries_roles, {id: false})
+   -> 0.0009s
+-- add_index(:queries_roles, [:query_id, :role_id], {unique: true, name: :queries_roles_ids})
+   -> 0.0023s
+== 20130602092539 CreateQueriesRoles: migrated (0.0034s) ======================
+
+== 20130710182539 AddQueriesVisibility: migrating =============================
+-- add_column(:queries, :visibility, :integer, {default: 0})
+   -> 0.0009s
+-- remove_column(:queries, :is_public)
+   -> 0.0004s
+== 20130710182539 AddQueriesVisibility: migrated (0.0020s) ====================
+
+== 20130713104233 CreateCustomFieldsRoles: migrating ==========================
+-- create_table(:custom_fields_roles, {id: false})
+   -> 0.0006s
+-- add_index(:custom_fields_roles, [:custom_field_id, :role_id], {unique: true, name: :custom_fields_roles_ids})
+   -> 0.0029s
+== 20130713104233 CreateCustomFieldsRoles: migrated (0.0044s) =================
+
+== 20130713111657 AddQueriesOptions: migrating ================================
+-- add_column(:queries, :options, :text)
+   -> 0.0005s
+== 20130713111657 AddQueriesOptions: migrated (0.0006s) =======================
+
+== 20130729070143 AddUsersMustChangePasswd: migrating =========================
+-- add_column(:users, :must_change_passwd, :boolean, {default: false, null: false})
+   -> 0.0030s
+== 20130729070143 AddUsersMustChangePasswd: migrated (0.0031s) ================
+
+== 20130911193200 RemoveEolsFromAttachmentsFilename: migrating ================
+== 20130911193200 RemoveEolsFromAttachmentsFilename: migrated (0.0011s) =======
+
+== 20131004113137 SupportForMultipleCommitKeywords: migrating =================
+== 20131004113137 SupportForMultipleCommitKeywords: migrated (0.0022s) ========
+
+== 20131005100610 AddRepositoriesCreatedOn: migrating =========================
+-- add_column(:repositories, :created_on, :timestamp)
+   -> 0.0007s
+== 20131005100610 AddRepositoriesCreatedOn: migrated (0.0007s) ================
+
+== 20131124175346 AddCustomFieldsFormatStore: migrating =======================
+-- add_column(:custom_fields, :format_store, :text)
+   -> 0.0006s
+== 20131124175346 AddCustomFieldsFormatStore: migrated (0.0007s) ==============
+
+== 20131210180802 AddCustomFieldsDescription: migrating =======================
+-- add_column(:custom_fields, :description, :text)
+   -> 0.0006s
+== 20131210180802 AddCustomFieldsDescription: migrated (0.0007s) ==============
+
+== 20131214094309 RemoveCustomFieldsMinMaxLengthDefaultValues: migrating ======
+-- change_column(:custom_fields, :min_length, :int)
+   -> 0.0005s
+-- change_column(:custom_fields, :max_length, :int)
+   -> 0.0004s
+== 20131214094309 RemoveCustomFieldsMinMaxLengthDefaultValues: migrated (0.0057s)
+
+== 20131215104612 StoreRelationTypeInJournalDetails: migrating ================
+== 20131215104612 StoreRelationTypeInJournalDetails: migrated (0.0084s) =======
+
+== 20131218183023 DeleteOrphanTimeEntriesCustomValues: migrating ==============
+== 20131218183023 DeleteOrphanTimeEntriesCustomValues: migrated (0.0013s) =====
+
+== 20140228130325 ChangeChangesetsCommentsLimit: migrating ====================
+== 20140228130325 ChangeChangesetsCommentsLimit: migrated (0.0000s) ===========
+
+== 20140903143914 AddPasswordChangedAtToUser: migrating =======================
+-- add_column(:users, :passwd_changed_on, :timestamp, {precision: nil})
+   -> 0.0007s
+== 20140903143914 AddPasswordChangedAtToUser: migrated (0.0008s) ==============
+
+== 20140920094058 InsertBuiltinGroups: migrating ==============================
+== 20140920094058 InsertBuiltinGroups: migrated (0.0469s) =====================
+
+== 20141029181752 AddTrackersDefaultStatusId: migrating =======================
+-- add_column(:trackers, :default_status_id, :integer)
+   -> 0.0007s
+== 20141029181752 AddTrackersDefaultStatusId: migrated (0.0018s) ==============
+
+== 20141029181824 RemoveIssueStatusesIsDefault: migrating =====================
+-- remove_column(:issue_statuses, :is_default)
+   -> 0.0006s
+== 20141029181824 RemoveIssueStatusesIsDefault: migrated (0.0007s) ============
+
+== 20141109112308 AddRolesUsersVisibility: migrating ==========================
+-- add_column(:roles, :users_visibility, :string, {limit: 30, default: "all", null: false})
+   -> 0.0010s
+== 20141109112308 AddRolesUsersVisibility: migrated (0.0011s) =================
+
+== 20141122124142 AddWikiRedirectsRedirectsToWikiId: migrating ================
+-- add_column(:wiki_redirects, :redirects_to_wiki_id, :integer)
+   -> 0.0005s
+-- change_column(:wiki_redirects, :redirects_to_wiki_id, :integer)
+   -> 0.0003s
+== 20141122124142 AddWikiRedirectsRedirectsToWikiId: migrated (0.0049s) =======
+
+== 20150113194759 CreateEmailAddresses: migrating =============================
+-- create_table(:email_addresses, {id: :integer})
+   -> 0.0058s
+== 20150113194759 CreateEmailAddresses: migrated (0.0059s) ====================
+
+== 20150113211532 PopulateEmailAddresses: migrating ===========================
+== 20150113211532 PopulateEmailAddresses: migrated (0.0026s) ==================
+
+== 20150113213922 RemoveUsersMail: migrating ==================================
+-- remove_column(:users, :mail)
+   -> 0.0008s
+== 20150113213922 RemoveUsersMail: migrated (0.0009s) =========================
+
+== 20150113213955 AddEmailAddressesUserIdIndex: migrating =====================
+-- add_index(:email_addresses, :user_id, {name: "index_email_addresses_on_user_id"})
+   -> 0.0037s
+== 20150113213955 AddEmailAddressesUserIdIndex: migrated (0.0038s) ============
+
+== 20150208105930 ReplaceMoveIssuesPermission: migrating ======================
+== 20150208105930 ReplaceMoveIssuesPermission: migrated (0.0011s) =============
+
+== 20150510083747 ChangeDocumentsTitleLimit: migrating ========================
+-- change_column(:documents, :title, :string, {limit: nil})
+   -> 0.0006s
+== 20150510083747 ChangeDocumentsTitleLimit: migrated (0.0036s) ===============
+
+== 20150525103953 ClearEstimatedHoursOnParentIssues: migrating ================
+== 20150525103953 ClearEstimatedHoursOnParentIssues: migrated (0.0026s) =======
+
+== 20150526183158 AddRolesTimeEntriesVisibility: migrating ====================
+-- add_column(:roles, :time_entries_visibility, :string, {limit: 30, default: "all", null: false})
+   -> 0.0008s
+== 20150526183158 AddRolesTimeEntriesVisibility: migrated (0.0008s) ===========
+
+== 20150528084820 AddRolesAllRolesManaged: migrating ==========================
+-- add_column(:roles, :all_roles_managed, :boolean, {default: true, null: false})
+   -> 0.0007s
+== 20150528084820 AddRolesAllRolesManaged: migrated (0.0008s) =================
+
+== 20150528092912 CreateRolesManagedRoles: migrating ==========================
+-- create_table(:roles_managed_roles, {id: false})
+   -> 0.0007s
+== 20150528092912 CreateRolesManagedRoles: migrated (0.0008s) =================
+
+== 20150528093249 AddUniqueIndexOnRolesManagedRoles: migrating ================
+-- add_index(:roles_managed_roles, [:role_id, :managed_role_id], {unique: true, name: "index_roles_managed_roles_on_role_id_and_managed_role_id"})
+   -> 0.0028s
+== 20150528093249 AddUniqueIndexOnRolesManagedRoles: migrated (0.0028s) =======
+
+== 20150725112753 InsertAllowedStatusesForNewIssues: migrating ================
+== 20150725112753 InsertAllowedStatusesForNewIssues: migrated (0.0021s) =======
+
+== 20150730122707 CreateImports: migrating ====================================
+-- create_table(:imports, {id: :integer})
+   -> 0.0059s
+== 20150730122707 CreateImports: migrated (0.0059s) ===========================
+
+== 20150730122735 CreateImportItems: migrating ================================
+-- create_table(:import_items, {id: :integer})
+   -> 0.0063s
+== 20150730122735 CreateImportItems: migrated (0.0064s) =======================
+
+== 20150921204850 ChangeTimeEntriesCommentsLimitTo1024: migrating =============
+-- change_column(:time_entries, :comments, :string, {limit: 1024})
+   -> 0.0032s
+== 20150921204850 ChangeTimeEntriesCommentsLimitTo1024: migrated (0.0033s) ====
+
+== 20150921210243 ChangeWikiContentsCommentsLimitTo1024: migrating ============
+-- change_column(:wiki_content_versions, :comments, :string, {limit: 1024})
+   -> 0.0006s
+-- change_column(:wiki_contents, :comments, :string, {limit: 1024})
+   -> 0.0004s
+== 20150921210243 ChangeWikiContentsCommentsLimitTo1024: migrated (0.0041s) ===
+
+== 20151020182334 ChangeAttachmentsFilesizeLimitTo8: migrating ================
+-- change_column(:attachments, :filesize, :integer, {limit: 8})
+   -> 0.0116s
+== 20151020182334 ChangeAttachmentsFilesizeLimitTo8: migrated (0.0148s) =======
+
+== 20151020182731 FixCommaInUserFormatSettingValue: migrating =================
+== 20151020182731 FixCommaInUserFormatSettingValue: migrated (0.0011s) ========
+
+== 20151021184614 ChangeIssueCategoriesNameLimitTo60: migrating ===============
+-- change_column(:issue_categories, :name, :string, {limit: 60})
+   -> 0.0006s
+== 20151021184614 ChangeIssueCategoriesNameLimitTo60: migrated (0.0033s) ======
+
+== 20151021185456 ChangeAuthSourcesFilterToText: migrating ====================
+-- change_column(:auth_sources, :filter, :text)
+   -> 0.0006s
+== 20151021185456 ChangeAuthSourcesFilterToText: migrated (0.0007s) ===========
+
+== 20151021190616 ChangeUserPreferencesHideMailDefaultToTrue: migrating =======
+-- change_column(:user_preferences, :hide_mail, :boolean)
+   -> 0.0007s
+== 20151021190616 ChangeUserPreferencesHideMailDefaultToTrue: migrated (0.0021s)
+
+== 20151024082034 AddTokensUpdatedOn: migrating ===============================
+-- add_column(:tokens, :updated_on, :timestamp)
+   -> 0.0006s
+== 20151024082034 AddTokensUpdatedOn: migrated (0.0013s) ======================
+
+== 20151025072118 CreateCustomFieldEnumerations: migrating ====================
+-- create_table(:custom_field_enumerations, {id: :integer})
+   -> 0.0064s
+== 20151025072118 CreateCustomFieldEnumerations: migrated (0.0065s) ===========
+
+== 20151031095005 AddProjectsDefaultVersionId: migrating ======================
+-- column_exists?(:projects, :default_version_id, :integer)
+   -> 0.0014s
+-- add_column(:projects, :default_version_id, :integer, {default: nil})
+   -> 0.0005s
+== 20151031095005 AddProjectsDefaultVersionId: migrated (0.0021s) =============
+
+== 20160404080304 ForcePasswordResetDuringSetup: migrating ====================
+== 20160404080304 ForcePasswordResetDuringSetup: migrated (0.0009s) ===========
+
+== 20160416072926 RemovePositionDefaults: migrating ===========================
+-- change_column("boards", :position, :integer)
+   -> 0.0008s
+-- change_column("custom_fields", :position, :integer)
+   -> 0.0004s
+-- change_column("enumerations", :position, :integer)
+   -> 0.0004s
+-- change_column("issue_statuses", :position, :integer)
+   -> 0.0006s
+-- change_column("roles", :position, :integer)
+   -> 0.0004s
+-- change_column("trackers", :position, :integer)
+   -> 0.0004s
+== 20160416072926 RemovePositionDefaults: migrated (0.0111s) ==================
+
+== 20160529063352 AddRolesSettings: migrating =================================
+-- add_column(:roles, :settings, :text)
+   -> 0.0005s
+== 20160529063352 AddRolesSettings: migrated (0.0005s) ========================
+
+== 20161001122012 AddTrackerIdIndexToWorkflows: migrating =====================
+-- add_index(:workflows, :tracker_id, {name: "index_workflows_on_tracker_id"})
+   -> 0.0029s
+== 20161001122012 AddTrackerIdIndexToWorkflows: migrated (0.0030s) ============
+
+== 20161002133421 AddIndexOnMemberRolesInheritedFrom: migrating ===============
+-- add_index(:member_roles, :inherited_from, {name: "index_member_roles_on_inherited_from"})
+   -> 0.0042s
+== 20161002133421 AddIndexOnMemberRolesInheritedFrom: migrated (0.0043s) ======
+
+== 20161010081301 ChangeIssuesDescriptionLimit: migrating =====================
+== 20161010081301 ChangeIssuesDescriptionLimit: migrated (0.0000s) ============
+
+== 20161010081528 ChangeJournalDetailsValueLimit: migrating ===================
+== 20161010081528 ChangeJournalDetailsValueLimit: migrated (0.0000s) ==========
+
+== 20161010081600 ChangeJournalsNotesLimit: migrating =========================
+== 20161010081600 ChangeJournalsNotesLimit: migrated (0.0000s) ================
+
+== 20161126094932 AddIndexOnChangesetsIssuesIssueId: migrating ================
+-- add_index(:changesets_issues, :issue_id, {name: "index_changesets_issues_on_issue_id"})
+   -> 0.0029s
+== 20161126094932 AddIndexOnChangesetsIssuesIssueId: migrated (0.0029s) =======
+
+== 20161220091118 AddIndexOnIssuesParentId: migrating =========================
+-- add_index(:issues, :parent_id, {name: "index_issues_on_parent_id"})
+   -> 0.0025s
+== 20161220091118 AddIndexOnIssuesParentId: migrated (0.0026s) ================
+
+== 20170207050700 AddIndexOnDiskFilenameToAttachments: migrating ==============
+-- add_index(:attachments, :disk_filename, {name: "index_attachments_on_disk_filename"})
+   -> 0.0027s
+== 20170207050700 AddIndexOnDiskFilenameToAttachments: migrated (0.0028s) =====
+
+== 20170302015225 ChangeAttachmentsDigestLimitTo64: migrating =================
+-- change_column(:attachments, :digest, :string, {limit: 64})
+   -> 0.0009s
+== 20170302015225 ChangeAttachmentsDigestLimitTo64: migrated (0.0010s) ========
+
+== 20170309214320 AddProjectDefaultAssignedToId: migrating ====================
+-- add_column(:projects, :default_assigned_to_id, :integer, {default: nil})
+   -> 0.0007s
+-- column_exists?(:projects, :default_assignee_id, :integer)
+   -> 0.0017s
+== 20170309214320 AddProjectDefaultAssignedToId: migrated (0.0026s) ===========
+
+== 20170320051650 ChangeRepositoriesExtraInfoLimit: migrating =================
+== 20170320051650 ChangeRepositoriesExtraInfoLimit: migrated (0.0000s) ========
+
+== 20170418090031 AddViewNewsToAllExistingRoles: migrating ====================
+== 20170418090031 AddViewNewsToAllExistingRoles: migrated (0.0042s) ===========
+
+== 20170419144536 AddViewMessagesToAllExistingRoles: migrating ================
+== 20170419144536 AddViewMessagesToAllExistingRoles: migrated (0.0038s) =======
+
+== 20170723112801 RenameCommentsToContent: migrating ==========================
+-- rename_column(:comments, :comments, :content)
+   -> 0.0031s
+== 20170723112801 RenameCommentsToContent: migrated (0.0032s) =================
+
+== 20180501132547 AddAuthorIdToTimeEntries: migrating =========================
+-- add_column(:time_entries, :author_id, :integer, {default: nil, after: :project_id})
+   -> 0.0008s
+== 20180501132547 AddAuthorIdToTimeEntries: migrated (0.0034s) ================
+
+== 20180913072918 AddVerifyPeerToAuthSources: migrating =======================
+-- change_table(:auth_sources)
+   -> 0.0008s
+== 20180913072918 AddVerifyPeerToAuthSources: migrated (0.0009s) ==============
+
+== 20180923082945 ChangeSqliteBooleansTo0And1: migrating ======================
+== 20180923082945 ChangeSqliteBooleansTo0And1: migrated (0.0000s) =============
+
+== 20180923091603 ChangeSqliteBooleansDefault: migrating ======================
+== 20180923091603 ChangeSqliteBooleansDefault: migrated (0.0000s) =============
+
+== 20190315094151 ChangeCustomValuesValueLimit: migrating =====================
+== 20190315094151 ChangeCustomValuesValueLimit: migrated (0.0000s) ============
+
+== 20190315102101 AddTrackersDescription: migrating ===========================
+-- add_column(:trackers, :description, :string, {after: :name})
+   -> 0.0043s
+== 20190315102101 AddTrackersDescription: migrated (0.0044s) ==================
+
+== 20190510070108 AddUniqueIdToImportItems: migrating =========================
+-- change_table(:import_items)
+   -> 0.0029s
+== 20190510070108 AddUniqueIdToImportItems: migrated (0.0030s) ================
+
+== 20190620135549 ChangeRolesNameLimit: migrating =============================
+-- change_column(:roles, :name, :string, {limit: 255, default: ""})
+   -> 0.0013s
+== 20190620135549 ChangeRolesNameLimit: migrated (0.0014s) ====================
+
+== 20200826153401 AddTwofaSchemeToUser: migrating =============================
+-- add_column(:users, :twofa_scheme, :string)
+   -> 0.0008s
+== 20200826153401 AddTwofaSchemeToUser: migrated (0.0009s) ====================
+
+== 20200826153402 AddTotpToUser: migrating ====================================
+-- add_column(:users, :twofa_totp_key, :string)
+   -> 0.0005s
+-- add_column(:users, :twofa_totp_last_used_at, :integer)
+   -> 0.0003s
+== 20200826153402 AddTotpToUser: migrated (0.0009s) ===========================
+
+== 20210704125704 AddTwofaRequiredToGroups: migrating =========================
+-- add_column(:users, :twofa_required, :boolean, {default: false})
+   -> 0.0008s
+== 20210704125704 AddTwofaRequiredToGroups: migrated (0.0008s) ================
+
+== 20210705111300 AddProjectsDefaultIssueQueryId: migrating ===================
+-- add_column(:projects, :default_issue_query_id, :integer, {default: nil})
+   -> 0.0007s
+== 20210705111300 AddProjectsDefaultIssueQueryId: migrated (0.0009s) ==========
+
+== 20210728131544 DropIsInChlogColumn: migrating ==============================
+-- remove_column(:trackers, :is_in_chlog)
+   -> 0.0005s
+== 20210728131544 DropIsInChlogColumn: migrated (0.0005s) =====================
+
+== 20210801145548 RemoveBccRecipientsSetting: migrating =======================
+== 20210801145548 RemoveBccRecipientsSetting: migrated (0.0009s) ==============
+
+== 20210801211024 RemoveOrphanedUserCustomValues: migrating ===================
+== 20210801211024 RemoveOrphanedUserCustomValues: migrated (0.0009s) ==========
+
+== 20211213122100 RemoveIdentityUrlFromUsers: migrating =======================
+-- remove_column(:users, :identity_url, :string)
+   -> 0.0005s
+== 20211213122100 RemoveIdentityUrlFromUsers: migrated (0.0006s) ==============
+
+== 20211213122101 DropOpenIdAuthenticationTables: migrating ===================
+-- drop_table(:open_id_authentication_associations)
+   -> 0.0007s
+-- drop_table(:open_id_authentication_nonces)
+   -> 0.0005s
+== 20211213122101 DropOpenIdAuthenticationTables: migrated (0.0013s) ==========
+
+== 20211213122102 RemoveOpenIdSetting: migrating ==============================
+== 20211213122102 RemoveOpenIdSetting: migrated (0.0006s) =====================
+
+== 20220224194639 DeleteOrphanedTimeEntryActivities: migrating ================
+== 20220224194639 DeleteOrphanedTimeEntryActivities: migrated (0.0085s) =======
+
+== 20220714093000 AddJournalUpdatedOn: migrating ==============================
+-- add_column(:journals, :updated_on, :timestamp, {after: :created_on, precision: nil})
+   -> 0.0008s
+== 20220714093000 AddJournalUpdatedOn: migrated (0.0033s) =====================
+
+== 20220714093010 AddJournalUpdatedBy: migrating ==============================
+-- add_column(:journals, :updated_by_id, :integer, {default: nil, after: :updated_on})
+   -> 0.0007s
+== 20220714093010 AddJournalUpdatedBy: migrated (0.0008s) =====================
+
+== 20220806215628 AddDefaultTimeEntryActivityToRoles: migrating ===============
+-- add_column(:roles, :default_time_entry_activity_id, :int)
+   -> 0.0004s
+== 20220806215628 AddDefaultTimeEntryActivityToRoles: migrated (0.0005s) ======
+
+== 20221002193055 DeleteOrphanedQueryAndRoleFromQueriesRoles: migrating =======
+== 20221002193055 DeleteOrphanedQueryAndRoleFromQueriesRoles: migrated (0.0011s)
+
+== 20221004172825 EnsureTextFormattingSettingIsStoredInDb: migrating ==========
+== 20221004172825 EnsureTextFormattingSettingIsStoredInDb: migrated (0.0010s) =
+
+== 20221012135202 AddIndexToCustomValues: migrating ===========================
+-- remove_index(:custom_values, {column: [:customized_type, :customized_id], name: :custom_values_customized, if_exists: true})
+   -> 0.0031s
+-- add_index(:custom_values, [:customized_type, :customized_id, :custom_field_id], {name: :custom_values_customized_custom_field})
+   -> 0.0027s
+== 20221012135202 AddIndexToCustomValues: migrated (0.0060s) ==================
+
+== 20221214173537 AddSelectProjectPublicityPermission: migrating ==============
+== 20221214173537 AddSelectProjectPublicityPermission: migrated (0.0015s) =====
+
+== 20230818020734 AddStatusDescription: migrating =============================
+-- add_column(:issue_statuses, :description, :string, {after: :name})
+   -> 0.0031s
+== 20230818020734 AddStatusDescription: migrated (0.0032s) ====================
+
+== 20231012112407 RemoveMentionUsersPermission: migrating =====================
+== 20231012112407 RemoveMentionUsersPermission: migrated (0.0064s) ============
+
+== 20231113131245 EnsureDefaultNotificationOptionIsStoredInDb: migrating ======
+== 20231113131245 EnsureDefaultNotificationOptionIsStoredInDb: migrated (0.0009s)
+
+== 20240213101801 AddQueriesDescription: migrating ============================
+-- add_column(:queries, :description, :string)
+   -> 0.0007s
+== 20240213101801 AddQueriesDescription: migrated (0.0009s) ===================
+
+== 20241007144951 ChangeTextFormattingFromMarkdownToCommonMark: migrating =====
+== 20241007144951 ChangeTextFormattingFromMarkdownToCommonMark: migrated (0.0010s)
+
+== 20241022095140 RemoveOrphanedCustomValueAttachments: migrating =============
+== 20241022095140 RemoveOrphanedCustomValueAttachments: migrated (0.0026s) ====
+
+== 20241026031710 UpdateOrphanedJournalUpdatedByIdToAnonymous: migrating ======
+== 20241026031710 UpdateOrphanedJournalUpdatedByIdToAnonymous: migrated (0.0018s)
+
+== 20241103150135 ChangeSettingsValueLimit: migrating =========================
+== 20241103150135 ChangeSettingsValueLimit: migrated (0.0000s) ================
+
+== 20241103184550 ChangeBuiltinRolesUserVisibility: migrating =================
+-- change_column_default(:roles, :users_visibility, "members_of_visible_projects")
+   -> 0.0016s
+== 20241103184550 ChangeBuiltinRolesUserVisibility: migrated (0.0022s) ========
+
+== 20241213003659 AddUniqueIndexToProjectsIdentifier: migrating ===============
+-- add_index(:projects, :identifier, {unique: true})
+   -> 0.0029s
+== 20241213003659 AddUniqueIndexToProjectsIdentifier: migrated (0.0030s) ======
+
+== 20250423065135 CreateReactions: migrating ==================================
+-- create_table(:reactions)
+   -> 0.0109s
+-- add_index(:reactions, [:reactable_type, :reactable_id, :user_id], {unique: true})
+   -> 0.0030s
+-- add_index(:reactions, [:reactable_type, :reactable_id, :id])
+   -> 0.0023s
+== 20250423065135 CreateReactions: migrated (0.0164s) =========================
+
+== 20250530185658 EnsureWikiTablesortSettingIsStoredInDb: migrating ===========
+== 20250530185658 EnsureWikiTablesortSettingIsStoredInDb: migrated (0.0008s) ==
+
+== 20250611092155 CreateDoorkeeperTables: migrating ===========================
+-- create_table(:oauth_applications)
+   -> 0.0056s
+-- add_index(:oauth_applications, :uid, {unique: true})
+   -> 0.0022s
+-- create_table(:oauth_access_grants)
+   -> 0.0074s
+-- add_index(:oauth_access_grants, :token, {unique: true})
+   -> 0.0024s
+-- add_foreign_key(:oauth_access_grants, :oauth_applications, {column: :application_id})
+   -> 0.0021s
+-- add_foreign_key(:oauth_access_grants, :users, {column: :resource_owner_id})
+   -> 0.0007s
+-- create_table(:oauth_access_tokens)
+   -> 0.0080s
+-- add_index(:oauth_access_tokens, :token, {unique: true})
+   -> 0.0027s
+-- add_index(:oauth_access_tokens, :resource_owner_id)
+   -> 0.0024s
+-- add_index(:oauth_access_tokens, :refresh_token, {unique: true})
+   -> 0.0025s
+-- add_foreign_key(:oauth_access_tokens, :oauth_applications, {column: :application_id})
+   -> 0.0008s
+-- add_foreign_key(:oauth_access_tokens, :users, {column: :resource_owner_id})
+   -> 0.0006s
+== 20250611092155 CreateDoorkeeperTables: migrated (0.0382s) ==================
+
+== 20250611092227 EnablePkce: migrating =======================================
+-- add_column(:oauth_access_grants, :code_challenge, :string, {null: true})
+   -> 0.0008s
+-- add_column(:oauth_access_grants, :code_challenge_method, :string, {null: true})
+   -> 0.0003s
+== 20250611092227 EnablePkce: migrated (0.0012s) ==============================
+
+komekomekome@DESKTOP-5900X:/var/lib/redmine$
