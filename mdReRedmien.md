@@ -626,18 +626,6 @@ sudo nano /etc/apache2/conf-available/redmine.conf
 ファイル内にctrl+Vで以下コピペする。  
 
 ```conf
-# * Require all granted
-# Redmineの画像ファイル・CSSファイル等へのアクセスを許可する設定。
-# Apache 2.4のデフォルトではサーバ上の全ファイルへのアクセスが禁止されている。
-# (Allow from allは2.2以前で利用するオプション)
-# * Options -MultiViews
-# コンテンツネゴシエーション(ファイル名の拡張子を省略したアクセスなど)を無効にする。
-# これはRailsアプリケーション(Redmine)の動作には通常不要で、誤動作を防ぐために設定されます。
-<Directory "/var/lib/redmine/public">
-  Require all granted
-  Options -MultiViews
-</Directory>
-
 # Passengerの基本設定。
 # passenger-install-apache2-module --snippet で表示された設定を記述。
 # 環境によって設定値が異なるため以下の5行はそのまま転記せず、必ず
@@ -646,7 +634,6 @@ LoadModule passenger_module /usr/local/lib/ruby/gems/3.4.0/gems/passenger-6.1.0/
 <IfModule mod_passenger.c>
   PassengerRoot /usr/local/lib/ruby/gems/3.4.0/gems/passenger-6.1.0
   PassengerDefaultRuby /usr/local/bin/ruby
-</IfModule>
 
 # 必要に応じてPassengerのチューニングのための設定を追加(任意)。
 # 詳しくは Configuration reference - Passenger + Apache (https://www.phusionpassenger.com/docs/references/config_reference/apache/) 参照。
@@ -654,10 +641,11 @@ LoadModule passenger_module /usr/local/lib/ruby/gems/3.4.0/gems/passenger-6.1.0/
 # * PassengerMaxInstancesPerApp: Redmineが同時に起動できるプロセス数の上限設定
 # * PassengerPoolIdleTime: アイドル状態のプロセスを終了させるまでの時間(秒)設定
 # * PassengerStatThrottleRate: コード変更をチェックする頻度(秒)
-PassengerMaxPoolSize 20
-PassengerMaxInstancesPerApp 4
-PassengerPoolIdleTime 864000
-PassengerStatThrottleRate 10
+  PassengerMaxPoolSize 20
+  PassengerMaxInstancesPerApp 4
+  PassengerPoolIdleTime 864000
+  PassengerStatThrottleRate 10
+</IfModule>
 ```
 
 ctrl+oでファイルをセーブして、ctrl+xで終了する。  
@@ -723,16 +711,16 @@ URLのサブディレクトリでRedmineにアクセスできるように設定�
 
 > 例: http://サーバIPアドレスまたはホスト名/redmine
 
-先の手順で作成したファイルに設定を追記する。
+先の手順で作成したファイルとは別のファイルに設定を追記する。
 
 ```bash
-sudo nano /etc/apache2/conf-available/redmine.conf
+sudo nano /etc/apache2/sites-available/redmine.conf
 ```
 
-ファイル末尾にctrl+Vで以下コピペする。  
-`redmineKome`がサブディレクトリ名となる。  
+ctrl+Vで以下コピペすることで、`redmineKome`がサブディレクトリ名となる。  
 
 ```conf
+# サブディレクトリ形式でアクセスできるようにする
 Alias /redmineKome /var/lib/redmine/public
 <Location /redmineKome>
   PassengerBaseURI /redmineKome
@@ -810,7 +798,7 @@ netsh interface portproxy add v4tov4 listenport=80 listenaddress=192.168.1.14 co
   例: 他のPCから`http://192.168.1.14:80`でアクセスされた際に反応する  
 - listenaddress=192.168.1.14: Windowsが受け付けるIPアドレスの指定  
 - connectport=80: 転送先のポート番号の指定。WSL2のApacheが動作しているポート80に転送する。  
-- connectaddress=xxx.xxx.xxx.xxx: 転送先のIPアドレスの指定。WSL2の仮想IPアドレスに転送する。  
+- connectaddress=xxx.xxx.xxx.xxx: 転送先のIPアドレスの指定。WSL2の仮想IPアドレスに転送する。`hostname -I`で確認できる。  
 
 ###### プロキシ設定後の設定確認
 
@@ -996,6 +984,13 @@ sudo nano /etc/apache2/sites-available/redmine.conf
   # Redmineの公開ディレクトリを指定
   DocumentRoot /var/lib/redmine/public
 
+  # サブディレクトリ形式でアクセスできるようにする
+  Alias /redmineKome /var/lib/redmine/public
+  <Location /redmineKome>
+    PassengerBaseURI /redmineKome
+    PassengerAppRoot /var/lib/redmine
+  </Location>
+
   # HTTPSの有効化と証明書の指定
   SSLEngine on
   SSLCertificateFile    /etc/ssl/certs/redmine.crt
@@ -1003,7 +998,7 @@ sudo nano /etc/apache2/sites-available/redmine.conf
 
   # Passengerの設定(HTTPと同じ)
   PassengerAppRoot /var/lib/redmine
-  
+
   # Redmineの公開ディレクトリへのアクセス許可 (HTTP設定と共通)
   <Directory /var/lib/redmine/public>
     Require all granted
@@ -1117,12 +1112,32 @@ PackageFamilyName             :
 PS C:\Users\okome>
 ```
 
+以下でHost側の設定を確認する  
+
+```PowerShell
+PS C:\Users\okome> Get-NetFirewallRule -DisplayName "WSL2 Apache HTTPS 443 (Redmine)" | Format-Table DisplayName, Enabled, Direction, Action, LocalPort, Profile -AutoSize
+
+DisplayName                     Enabled Direction Action LocalPort         Profile
+-----------                     ------- --------- ------ ---------         -------
+WSL2 Apache HTTPS 443 (Redmine)    True   Inbound  Allow           Domain, Private
+
+PS C:\Users\okome>
+```
+
 Ubuntu側での待機状態を確認する
 
 ```bash
 komekomekome@DESKTOP-5900X:~$ sudo ss -tuln | grep 443
 tcp   LISTEN 0      511                 *:443              *:*
 komekomekome@DESKTOP-5900X:~$
+```
+
+host側で以下設定をする。  
+UbuntuのIPは`hostname -I`で確認できる。  
+☆
+
+```PowerShell
+netsh interface portproxy add v4tov4 listenport=443 listenaddress=192.168.1.14 connectport=443 connectaddress=xxx.xxx.xxx.xxx
 ```
 
 ## Redmine設定
