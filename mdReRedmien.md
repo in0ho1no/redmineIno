@@ -135,7 +135,112 @@ sudo apt update
 sudo apt upgrade -y
 ```
 
-### 実践
+## セキュリティ設定
+
+- エンプラ環境でのセキュリティ  
+  [Linux 用 Windows サブシステム用のMicrosoft Defender for Endpoint プラグイン (WSL)](https://learn.microsoft.com/ja-jp/defender-endpoint/mde-plugin-wsl)  
+- 無償で利用できるセキュリティ  
+  [ClamAntiVirusの公式ページ](https://www.clamav.net/)  
+  [ClamAVに関する日本語の紹介ページ](https://openstandia.jp/oss_info/clamav/)  
+  [Aptパッケージのインストール手順](https://docs.clamav.net/manual/Installing/Packages.html)
+
+### ClamAntiVirusの導入
+
+#### ClamAVの追加
+
+まずパッケージリストを更新しておく。
+
+```bash
+sudo apt update
+```
+
+[このページ](https://docs.clamav.net/manual/Installing/Packages.html#ubuntu)
+に記載されている通り、Debianの手順を参考に必要なパッケージを追加する。
+
+```bash
+sudo apt install -y clamav clamav-daemon
+```
+
+#### ウィルスデータベースを更新する
+
+以下手順はソースコードからビルドしたケースなので、aptによるインストールを実行している場合は不要。  
+
+```plain
+As with most other installation methods, you may need to do the following at a minimum before you can run freshclam, clamscan, or use clamdscan with clamd:
+
+Create /usr/local/etc/clamav/freshclam.conf from /usr/local/etc/clamav/freshclam.conf.sample.
+Remove or comment-out the Example line from freshclam.conf
+Run freshclam to download the latest malware definitions.
+If you wish to run clamd you'll also need to create /usr/local/etc/clamav/clamd.conf from /usr/local/etc/clamav/clamd.conf.sample, and configure clamd.conf with Local/Unix socket settings (preferred), or TCP socket settings.
+```
+
+以下手動でDBをアップデートしようとしても失敗する。  
+aptでのインストール後、既にdaemonが動作しているため。  
+
+```bash
+komekomekome@DESKTOP-5900X:~$ sudo freshclam
+ERROR: Failed to lock the log file /var/log/clamav/freshclam.log: Resource temporarily unavailable
+ERROR: Problem with internal logger (UpdateLogFile = /var/log/clamav/freshclam.log).
+ERROR: initialize: libfreshclam init failed.
+ERROR: Initialization error!
+komekomekome@DESKTOP-5900X:~$ 
+```
+
+どうしても手動で実行したいなら、以下でdaemonを停止させてから手動実行する。  
+更新後にはdaemonをリスタートする。  
+
+```bash
+komekomekome@DESKTOP-5900X:~$ sudo systemctl stop clamav-freshclam.service
+komekomekome@DESKTOP-5900X:~$ sudo freshclam
+ClamAV update process started at Fri Oct  3 01:01:19 2025
+Fri Oct  3 01:01:19 2025 -> daily.cvd database is up-to-date (version: 27780, sigs: 2076928, f-level: 90, builder: tomjudge)
+Fri Oct  3 01:01:19 2025 -> main.cvd database is up-to-date (version: 62, sigs: 6647427, f-level: 90, builder: sigmgr)
+Fri Oct  3 01:01:19 2025 -> bytecode.cvd database is up-to-date (version: 339, sigs: 80, f-level: 90, builder: nrandolp)
+komekomekome@DESKTOP-5900X:~$ sudo systemctl start clamav-freshclam.service
+komekomekome@DESKTOP-5900X:~$
+```
+
+#### daemonを自動起動できるようにする
+
+まず自動起動設定を作成する
+
+```bash
+komekomekome@DESKTOP-5900X:~$ sudo systemctl enable clamav-freshclam.service
+Synchronizing state of clamav-freshclam.service with SysV service script with /usr/lib/systemd/systemd-sysv-install.
+Executing: /usr/lib/systemd/systemd-sysv-install enable clamav-freshclam
+Created symlink /etc/systemd/system/multi-user.target.wants/clamav-freshclam.service → /usr/lib/systemd/system/clamav-freshclam.service.
+komekomekome@DESKTOP-5900X:~$ 
+```
+
+一度WSL2を完全終了(wsl.exe --shutdown)を指せてから再起動し、以下コマンドでdaemonが再起動していることを確認する。  
+
+```bash
+komekomekome@DESKTOP-5900X:~$ sudo systemctl status clamav-freshclam.service
+[sudo] password for komekomekome:
+● clamav-freshclam.service - ClamAV virus database updater
+     Loaded: loaded (/usr/lib/systemd/system/clamav-freshclam.service; enabled; preset: enabled)
+     Active: active (running) since Fri 2025-10-03 01:14:12 JST; 19s ago
+       Docs: man:freshclam(1)
+             man:freshclam.conf(5)
+             https://docs.clamav.net/
+   Main PID: 208 (freshclam)
+      Tasks: 1 (limit: 77102)
+     Memory: 15.3M (peak: 15.8M)
+        CPU: 55ms
+     CGroup: /system.slice/clamav-freshclam.service
+             └─208 /usr/bin/freshclam -d --foreground=true
+
+Oct 03 01:14:12 DESKTOP-5900X systemd[1]: Started clamav-freshclam.service - ClamAV virus database updater.
+Oct 03 01:14:12 DESKTOP-5900X freshclam[208]: ClamAV update process started at Fri Oct  3 01:14:12 2025
+Oct 03 01:14:12 DESKTOP-5900X freshclam[208]: Fri Oct  3 01:14:12 2025 -> daily.cvd database is up-to-date >
+Oct 03 01:14:12 DESKTOP-5900X freshclam[208]: Fri Oct  3 01:14:12 2025 -> main.cvd database is up-to-date (>
+Oct 03 01:14:12 DESKTOP-5900X freshclam[208]: Fri Oct  3 01:14:12 2025 -> bytecode.cvd database is up-to-da>
+komekomekome@DESKTOP-5900X:~$
+```
+
+## 実践
+
+### 
 
 #### 言語設定
 
